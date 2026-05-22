@@ -1,0 +1,292 @@
+================================================================================
+  AWS ALB ANALYSIS — CONCEPTS EXPLAINED
+  DNS | Route53 | Cloudflare | WAF | Security Groups | ALB Deletion Checklist
+================================================================================
+
+================================================================================
+1. DNS — The Phone Book of the Internet
+================================================================================
+
+Imagine the internet is a city. Every building (server) has a house number
+(IP address) like 54.23.11.8. But you don't type that — you type
+login.sadhguru.org.
+
+DNS (Domain Name System) is the phone book that translates:
+    login.sadhguru.org  →  54.23.11.8
+
+When you type a URL in a browser:
+    Browser asks DNS: "Where is login.sadhguru.org?"
+    DNS replies:      "Go to 54.23.11.8"
+    Browser connects: hits that IP
+
+Types of DNS records:
+    A      → Points domain to an IP address
+             Example: login.sadhguru.org → 54.23.11.8
+
+    CNAME  → Points domain to another domain name
+             Example: login.sadhguru.org → prodSSOLBNew-xxx.elb.amazonaws.com
+
+ALBs don't have fixed IPs — AWS gives them a DNS name like:
+    prodSSOLBNew-1078693949.ap-south-1.elb.amazonaws.com
+So you use a CNAME to point your domain to that ALB DNS name.
+
+
+================================================================================
+2. Route53 — AWS's DNS Service
+================================================================================
+
+Route53 is simply AWS's version of a DNS server.
+You manage your domain's DNS records inside it.
+
+    Route53 Hosted Zone: internal.isha.in
+    │
+    ├── prod-pms-router.internal.isha.in   → CNAME → prodSSOLBNew-xxx.elb.amazonaws.com
+    ├── prod-pms-srv-in.internal.isha.in   → CNAME → prodSSOLBNew-xxx.elb.amazonaws.com
+    └── prod-sso-alb-alias.internal.isha.in → A (Alias) → prodSSOLBNew
+
+These are INTERNAL DNS names (only resolvable inside your VPC/network).
+Your public domains like login.sadhguru.org are managed in Cloudflare.
+
+Why it matters for deletion:
+    If a Route53 record points to an ALB and you delete the ALB,
+    the DNS record becomes a dangling pointer — requests go nowhere,
+    causing errors for internal services.
+
+
+================================================================================
+3. Cloudflare — Your Public DNS + CDN
+================================================================================
+
+Since you use Cloudflare, your public domain DNS is managed there, not in
+AWS Route53.
+
+    User types: login.sadhguru.org
+                        │
+                        ▼
+                  Cloudflare DNS
+                  (manages sadhguru.org)
+                        │
+                        ▼  (CNAME or proxied record)
+                  prodSSOLBNew-xxx.ap-south-1.elb.amazonaws.com
+                        │
+                        ▼
+                     ALB (AWS)
+                        │
+                        ▼
+                  Target Group → EC2
+
+Cloudflare sits IN FRONT OF your ALB. It can also act as a proxy —
+meaning traffic goes: Cloudflare → ALB, not directly user → ALB.
+
+Why it matters for deletion:
+    Your public URLs like login.sadhguru.org are configured in Cloudflare.
+    If Cloudflare has a record pointing to an ALB's DNS name, deleting that
+    ALB breaks the site publicly.
+
+    YOU MUST CHECK CLOUDFLARE MANUALLY — this cannot be verified from AWS CLI.
+
+    Search in Cloudflare dashboard for any records pointing to:
+        prodSSOLBNew-1078693949.ap-south-1.elb.amazonaws.com
+        Isha-ibpl-ALB-719330762.ap-south-1.elb.amazonaws.com
+        ols-admin-alb-1014571363.ap-south-1.elb.amazonaws.com
+
+
+================================================================================
+4. WAF — The Bouncer at the Door
+================================================================================
+
+WAF (Web Application Firewall) sits in front of your ALB and inspects every
+incoming request before it reaches your app.
+
+    Internet
+       │
+       ▼
+     WAF  ← checks rules: block bots, SQL injection, bad IPs, rate limits
+       │
+       ▼
+     ALB
+       │
+       ▼
+     Target Group → EC2
+
+It can block, allow, or count requests based on rules.
+
+Why it matters for deletion:
+    If a WAF is attached to an ALB, it means someone deliberately put security
+    protection on it — strong signal the ALB is considered active and in use.
+
+    Status for your 3 ALBs:
+        prodSSOLBNew    → No WAF attached
+        Isha-ibpl-ALB   → No WAF attached
+        ols-admin-alb   → No WAF attached
+
+
+================================================================================
+5. Security Groups — The Firewall at the Instance Level
+================================================================================
+
+A Security Group is a virtual firewall that controls who can talk to what
+at the network level.
+
+    Internet
+       │  (port 80, 443)
+       ▼
+    ALB  ←── ALB Security Group: allow inbound 80/443 from 0.0.0.0 (internet)
+       │  (port 8080, etc.)
+       ▼
+    EC2  ←── EC2 Security Group: allow inbound ONLY from ALB's security group
+
+The EC2 instances typically only allow traffic FROM the ALB's security group
+— not directly from the internet. This is the standard secure pattern.
+
+Why it matters for deletion:
+    If you delete an ALB, its security group reference in EC2's inbound rules
+    becomes a ghost rule — harmless but messy.
+    Clean up any inbound rules on EC2s that reference the deleted ALB's SG.
+
+    Security Groups on your 3 ALBs:
+        prodSSOLBNew    → sg-0a2921bff2b4116bd
+        Isha-ibpl-ALB   → sg-00dc0483b49ab6248
+        ols-admin-alb   → sg-0468624f583690112
+
+
+================================================================================
+6. The Full Picture — Your Setup
+================================================================================
+
+                    USER (browser)
+                         │
+                         ▼
+                  ┌─────────────┐
+                  │  Cloudflare │  ← manages public DNS (sadhguru.org)
+                  │  (public)   │  ← may proxy/cache traffic
+                  └──────┬──────┘
+                         │  CNAME: login.sadhguru.org → ALB DNS name
+                         ▼
+                  ┌─────────────┐
+                  │     WAF     │  ← (not attached to your ALBs currently)
+                  └──────┬──────┘
+                         │
+                  ┌──────▼──────┐
+                  │  ALB        │  ← has Security Group (allow 80/443)
+                  │  Listeners  │  ← rules: which URL goes where
+                  └──────┬──────┘
+                         │
+                  ┌──────▼──────┐
+                  │ Target Group│  ← group of EC2s
+                  └──────┬──────┘
+                         │
+                  ┌──────▼──────┐
+                  │  EC2 / App  │  ← Security Group: allow only from ALB SG
+                  └─────────────┘
+
+    Internal services also reach ALB via:
+    Route53 (internal.isha.in) → ALB DNS name
+
+
+================================================================================
+7. ALB Analysis Summary — Account 700392259328 (ap-south-1 / Mumbai)
+================================================================================
+
+------------------------------
+ALB 1: prodSSOLBNew
+------------------------------
+Created       : Jan 25, 2025
+Scheme        : internet-facing
+Listeners     : HTTP:80 + HTTPS:443
+Target Groups : 4 (ALL EMPTY — no registered instances)
+30-day traffic: 917,900 requests → 0 success (2xx/3xx), 12,163 x 4xx, 10 x 5xx
+WAF           : None
+Security Group: sg-0a2921bff2b4116bd
+
+Listener rules route these hostnames to empty target groups:
+    login.sadhguru.org       → prodSSOoAuthAppTG      (empty)
+    ishalogin.sadhguru.org   → prodSSOLoginAppNewTG   (empty)
+    pms.sadhguru.org         → prodSSOPMSRouterAppTGNew (empty)
+Default action: 503 fixed-response
+
+Route53 records pointing to it (internal.isha.in):
+    prod-pms-router.internal.isha.in    (CNAME)
+    prod-pms-srv-in.internal.isha.in    (CNAME)
+    prod-sso-alb-alias.internal.isha.in (A Alias)
+
+Verdict: IDLE but DNS-coupled. Delete AFTER:
+    1. Removing the 3 Route53 records above
+    2. Verifying Cloudflare records for login/pms/ishalogin domains are removed
+    3. Cleaning up EC2 SG rules referencing sg-0a2921bff2b4116bd
+
+------------------------------
+ALB 2: Isha-ibpl-ALB
+------------------------------
+Created       : Sep 24, 2025
+Scheme        : internet-facing
+Listeners     : HTTP:80 + HTTPS:443
+Target Groups : 1 (TG1-Isha-ibpl-ALB — EMPTY)
+30-day traffic: 0 requests
+WAF           : None
+Security Group: sg-00dc0483b49ab6248
+VPC           : vpc-08f98764f19f98401 (separate VPC)
+Route53       : No records found
+Cloudflare    : Must verify manually
+
+Verdict: SAFE TO DELETE IMMEDIATELY.
+    No traffic, no targets, no DNS dependency found.
+    After delete: clean up sg-00dc0483b49ab6248 if unused.
+
+------------------------------
+ALB 3: ols-admin-alb
+------------------------------
+Created       : Nov 6, 2025
+Scheme        : internet-facing
+Listeners     : HTTPS:443 only (no HTTP listener)
+Target Groups : 1 (ols-admin-targets-https port 7080 — EMPTY)
+30-day traffic: 9,439 requests → 0 success, 1,924 x 4xx, 2,012 x 5xx
+WAF           : None
+Security Group: sg-0468624f583690112
+Route53       : No records found
+Cloudflare    : Must verify manually
+
+Verdict: SAFE TO DELETE. Confirm no OLS admin tool is still configured
+    to call its DNS: ols-admin-alb-1014571363.ap-south-1.elb.amazonaws.com
+    After delete: clean up sg-0468624f583690112 if unused.
+
+
+================================================================================
+8. Deletion Checklist (all layers)
+================================================================================
+
+    Layer             | prodSSOLBNew         | Isha-ibpl-ALB | ols-admin-alb
+    ------------------|----------------------|---------------|---------------
+    Target Groups     | Empty                | Empty         | Empty
+    Successful traffic| 0 (2xx)              | 0             | 0
+    Route53 records   | YES — 3 records      | None          | None
+    WAF attached      | No                   | No            | No
+    Cloudflare check  | MUST verify          | Must verify   | Must verify
+    SG cleanup needed | Yes (after delete)   | Yes           | Yes
+
+
+================================================================================
+9. Order of Operations for Safe Deletion
+================================================================================
+
+For prodSSOLBNew (most dependencies):
+    Step 1: Verify Cloudflare — remove records for login/pms/ishalogin domains
+    Step 2: Delete 3 Route53 records in internal.isha.in
+    Step 3: Deregister / delete 4 Target Groups
+    Step 4: Delete ALB
+    Step 5: Clean up Security Group sg-0a2921bff2b4116bd (check EC2 SG rules)
+
+For Isha-ibpl-ALB (no dependencies):
+    Step 1: Verify Cloudflare (quick check)
+    Step 2: Delete Target Group TG1-Isha-ibpl-ALB
+    Step 3: Delete ALB
+    Step 4: Clean up Security Group sg-00dc0483b49ab6248
+
+For ols-admin-alb:
+    Step 1: Confirm OLS admin tool is not pointing to ALB DNS name
+    Step 2: Verify Cloudflare (quick check)
+    Step 3: Delete Target Group ols-admin-targets-https
+    Step 4: Delete ALB
+    Step 5: Clean up Security Group sg-0468624f583690112
+
+================================================================================
