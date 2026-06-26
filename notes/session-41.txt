@@ -1,0 +1,112 @@
+install ansible in the server
+create one directory to clone ansible repos
+create log directory to log ansible log
+
+check if ansible playbook directory exist..
+
+if not, clone ansible repos
+if exist, pull the changes
+
+Authentication and Authorization
+================================
+Nouns and Verbs
+
+AWS has resources/services
+EC2, S3, ALB, etc -> names
+create ec2, view ec2, update ec2, delete ec2, etc -> actions
+
+Authentication -> prove yourself you belong to the system
+Authorization -> prove yourself you have access to that resource
+
+User, Group, Policy, Role
+
+User -> human. username and password... or access key and secret key
+Group -> group of users
+
+Policy/Permission -> which resource have which action
+
+Trainee -> policy
+
+view ec2
+ec2 -> resource name
+view ec2 -> action
+
+Ramesh will be assigned TraineePolicy
+Ramesh will be assigned CEOPolicy/ Administrator access
+
+EC2 Instance should have access to SSM parameter store
+
+/roboshop/dev/mysql/mysql_root_password
+
+terraform passing dev as args to shell
+shell received into variable as $2
+shell passing to ansible as ansible command line args
+
+
+target group as catalogue
+create ec2 instance and configure it using ansible
+
+10 catalogue instances are running
+I can connect to 10 instances and upgrade them
+
+[catalogue]
+catalogue-ip1
+catalogue-ip2
+
+creates JD and handover to HR -> launch template
+
+HR started recruiting
+
+10 -> each person working 6hr/day
+
+each person is working 12hr/day
+
+HR should recruit new resource 10members
+
+6hr/day
+
+4hr/day each person
+
+release few members
+
+Autoscaling
+
+1. create new server... configure using ansible
+
+launch template -> which VPC, which subnet, sg, instance_type
+
+create instance
+connect using ansible
+configure it
+stop the server
+take AMI -> amazon machine image
+
+give AMI to autoscaling
+
+1. pull all the instance IP address, connect to them and release new appliation
+
+2. create one instance, configure it, take AMI, refresh autoscaling
+
+rolling deployment
+
+10 servers are already running, we got new AMI
+
+create one server with new AMI, delete one old server
+create 2nd server with new AMI, delete another old server
+
+target group
+create catalogue instance
+configure it using remote-exec and ansible
+stop the instance
+take AMI
+create launch template
+	VPC
+	Subnet
+	instance_type
+	SG
+	AMI -> new AMI
+autoscaling group
+autoscaling policy -> if AVG CPU utilisation is more than 75% create new instances, less than 75 remove instances
+create ALB listener rule
+if frontend hits catalogue.backend-alb-dev.daws86s.fun -> catalogue TG
+

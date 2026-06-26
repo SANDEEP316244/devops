@@ -1,0 +1,55 @@
+1. Tfvars
+2. Workspaces
+3. Different repos
+
+same code for all environments, code re use
+whatever code is written it may be accidentally applied into PROD
+
+uses
+=====
+clear isloation b/w environments, no accidental changes
+code should be duplicated -> disadvantage
+
+Modules development
+========
+if seperate code for each component, there is no single point of control
+
+scb -> top level project
+savings banking
+current banking
+mobile banking
+whatsapp banking
+demat
+loans
+
+if there is version change, we need to update in all components
+there are no common standards for all the projects
+maintanance and update is very tough
+
+module advantages
+=================
+1. changes at single place cascade to all components using that module -> centralised approach
+2. we can implement industry best standards in the module, all other components are forced to use. better for governance, compliance and auditing
+3. code reuse
+
+module developers
+module users
+
+terraform naming convention
+===========================
+sivakumar_reddy_m -> for programs
+
+sivakumar-reddy-m -> for humans
+
+human ramesh
+ramesh
+
+catalogue-instance -> resource type should not be used in resource names
+id -> string
+ids -> list
+
+module "module-name" {
+
+	source = ""
+	mandatory-variables
+}

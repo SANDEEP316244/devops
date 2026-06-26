@@ -1,0 +1,154 @@
+variable "var_name" {
+	default = "default_value"
+}
+
+1. command line
+2. terraform.tfvars
+3. ENV variable TF_VAR_var_name
+4. default value
+5. prompt
+
+var.var_name
+
+"${var.var_name}"
+
+number
+string
+list
+map
+bool
+
+expression ? "true" : "false"
+
+loops
+======
+count based loop -> list iteration
+
+count = number
+
+count.index
+
+for loop
+
+for_each = toset(["bucket-alpha", "bucket-beta", "bucket-gamma"])
+
+list -> string values
+map -> key and values
+
+frontend = "ip-address"
+
+map iteration
+==============
+{
+
+key = value
+key2 = value2
+
+}
+
+every entry is considered as each. each.key and each.value
+
+count -> list -> count.index
+for_each -> map -> each.key and each.value
+
+I want to iterate list through for_each
+
+for_each = toset(list)
+
+each.value
+
+data sources
+==============
+we are creating resources in provider
+
+we can query the existing information in the provider using data sources.
+
+
+data "aws_ami" "joindevops" {
+	parameters to query
+}
+
+functions
+============
+
+merge function
+
+{
+	a = b
+	c = d
+	x = y
+},
+
+{
+	a = b
+	c = e
+}
+
+a = b
+c = e
+x = y
+
+merge({a="b", c="d"}, {e="f", c="z"})
+
+a = b
+c = z
+e = f
+
+
+state
+=========
+whatever we give in .tf files, it should create those resources -> declarative way of creating infra
+
+matching you declared infra with actual infra in AWS account
+
+state file -> terraform uses this file to track what it created
+
+1. tf files -> expectation or desired or declared
+2. actual infra -> reality or existing
+3. state -> for comparision
+
+first time
+===============
+no state file -> new or first time
+created -> .tfstate
+
+2nd time
+===============
+aws_security_group.allow_all: Refreshing state...
+
+it will compare actual infra vs state file
+
+nothing to change
+
+manually delete in the console
+=================
+refreshing state
+
+wahtever in state file, it is exist in AWS account or not?
+
+then someone outside of terraform did something..
+
+I changed in tf files
+====================
+refreshing state
+
+state == actual infra
+
+desired infra != actual infra
+
+
+when I removed something
+=====================
+refreshing state
+
+state == actual infra
+
+desired infra != actual infra
+
+deleted in actual infra
+updated in state file
+
+terraform state is used to match the desired infra with actual infra, when create read update and delete the infra terraform uses this state file to acheive the desired infra for comparision. It is like memory to terraform
+
+terraform locks the state file when terraform is running
+

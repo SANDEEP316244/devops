@@ -1,0 +1,5 @@
+apiVersion: v2
+name: cart # chart name
+version:  1.0.0 # chart version
+description: cart installation
+appVersion: v1 # this is application version

@@ -1,0 +1,167 @@
+Database
+=========
+Installed database server
+started
+enabled
+set the root password
+
+mysql -> go to mysql cmd line
+show databases;
+use <database-name>;
+show tables;
+select * from <table-name>;
+
+Backend
+=========
+install programming run time -> nodejs/java/python
+
+created one system user
+create one directory
+downloaded the code
+installed dependencies
+created systemctl service
+make sure you provide dependencies like DB_URL
+systemctl daemon-reload
+systemctl started
+
+connect to DB
+run the scripts provided by developer
+	create a schema called transactions
+	use transactions
+	create table
+	create one user
+	provide access to that use to transactions schema
+
+then restart backend
+
+systemctl status
+ps -ef | grep service name
+netstat -lntp
+telnet DB_IP <port-no>
+
+frontend
+===========
+installed nginx as http/web server
+started and enabled
+/usr/share/nginx/html -> default location nginx search for HTML content
+/etc/nginx
+
+removed default website
+downloaded our frontend website
+configured a proxy to connect with backend
+restarted
+
+telnet backend_IP 8080
+
+
+[Unit]
+Description = Backend Service
+
+[Service]
+User=expense
+Environment=DB_HOST="mysql.daws86s.fun"
+ExecStart=/bin/node /app/index.js
+SyslogIdentifier=backend
+
+[Install]
+WantedBy=multi-user.target
+
+
+DNS -> domain name system
+
+humans remember names, computer works on numbers
+
+phonebook -> 
+name == number
+telephone directory
+name == number
+
+DNS resolver -> a simple software running in ISP servers to fetch the IP address for a domain
+
+English -> Oxford
+
+ICANN -> Internet corporation for assigned names and numbers -> Non profit organisation
+
+TLD -> Top level domain
+
+.com .in .org .net .io .edu .us .uk .shop .ai
+
+.in -> GOV of India
+.us .uk
+.ai 
+Tuvalu -> tv
+.tv -> Gov of Tuvalu
+
+What happens when you buy a domain?
+
+daws86s.online
+I will pay to godaddy/hostinger to purchase this domain
+	name, contact details, addres, etc.
+	
+.online -> Who owns it
+
+domain registars == godaddy/hostinger
+TLD pays commission to godaddy
+
+if you want to keep that domain -> godaddy
+temp purpose -> hostinger
+
+Nameservers update to TLD
+
+Domain ownership belongs .fun TLD
+Domain manage/authorised person is hostinger
+
+I want to shift domain authority to AWS. Why?
+
+daws86s.fun -> frontend public IP
+
+change in nameservers
+
+update these to .fun TLD
+
+Type of records
+===============
+A -> IpV4 address
+CNAME --> Another domain
+MX -> Mail servers
+TXT -> Domain verrification purpose
+AAAA -> IpV6
+NS -> Nameservers, who is controlling the domain
+SOA -> Who is controlling
+
+
+mysql.daws86s.fun -> MySQL private IP
+
+TTL -> Time to live (Controls how much your cache keeps this record, before issuing next request)
+
+High TTL -> DNS overload decreases. stable websites will have high TTL
+Low TTL -> migration activities. decrease TTL 
+
+daws86s.fun
+
+Nginx
+=======
+1. http/web server
+2. reverse proxy
+3. load balancer
+
+proxy == on behalf of someone
+
+forward proxy
+==============
+on behalf of client
+
+mobile -> Hotstar
+
+Internet exchange points -> block the websites here
+
+Mobile -> VPN(US) -> facebook.com and get the response to VPN --> Mobile
+
+hiding the client identity
+access restrictions
+traffic filter
+
+reverse proxy
+=============
+on behalf of server
+hiding the server identity -> security

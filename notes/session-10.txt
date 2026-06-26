@@ -1,0 +1,113 @@
+you can also manage TLD
+.devops
+
+1. Strong tech team
+2. Strong finance
+3. Strong infra
+
+you need to approach domain registars like hostinger, godaddy, etc.
+
+Forward vs Reverse proxy
+=========================
+
+Forward proxy
+============
+client side(anonymous identity)
+provide restricted access
+traffic control
+	Laptop -> VPN(company proxy)(block facebook, instagram, etc.)
+	
+Reverse proxy
+=============
+hide server identity(security reasons)
+SSL termination
+Caching server
+
+Laptop -> ISP -> Download the movie from torrents -> Cache into ISP servers
+
+Nginx is used as reverse proxy as well as load balancer
+
+upstream frontend {
+        server frontend-1.daws86s.fun;
+        server frontend-2.daws86s.fun;
+    }
+
+
+http://daws86s.fun/api/transaction
+
+HTTP Methods and Status Codes
+===============================
+
+Nouns 		 and 	Verbs
+Namavachakam and 	Kriya
+
+CRUD(Verbs i.e action on resources/nouns)
+transaction -> nouns/resources
+
+GET Method -> Read
+Response code --> 200
+
+http://daws86s.fun/api/transaction
+POST
+200
+{amount: "100", desc: "snacks"}
+
+
+2XX -> Success
+3XX -> Success, but redirection/cache
+4XX -> client side error
+	400 --> Bad request, data is bad
+	401 --> unauthorised. you need username and password
+	403 --> Forbidden. No access to you
+	404 --> Not found.
+5xx -> Server side error
+	500 -> Problem inside servers
+	503 -> Service unavailable
+	504 -> Gateway timeout, backend servers are down
+
+http://daws86s.fun/api/transaction
+UPDATE/PUT
+{amount: "100", desc: "ticket"}
+
+http://daws86s.fun/api/transaction
+DELETE
+
+delete entire data
+
+/usr/share/nginx/html
+/etc/nginx
+/var/log -> Linux logs directory
+/var/log/nginx -> nginx log directory
+
+/var/log/messages -> backend logs
+
+
+systemctl status
+ps -ef
+netstat
+
+telnet IP port-no
+inspect and check
+/var/log/nginx
+/var/log/messages
+
+nslookup
+curl http://localhost:8080/health
+
+inode symlink and hardlink
+============================
+
+softlink -> shortcut
+
+c:\ProgramFiles\chrome.exe
+
+"C:\Program Files (x86)\Mobatek\MobaXterm\"
+
+symlink is a shortcut to actual file
+inodes are diff for symlink and actual file
+deleting the actual file will not delete symlink, but it breaks
+
+hardlink
+==========
+same inode since pointing to same file in storage
+deleting hardlink will not delete the actual file

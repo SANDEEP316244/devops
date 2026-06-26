@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: catalogue
+  namespace: argocd # This must match the namespace where Argo CD is installed
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/daws-86s/catalogue-deploy.git
+    targetRevision: main # Specifies the branch, tag, or commit to sync to
+    path: .
+    helm:
+      releaseName: catalogue
+      valueFiles:
+      - values-dev.yaml
+  destination:
+    server: https://kubernetes.default.svc # Current Cluster
+    namespace: argocd
+  syncPolicy:
+    automated:
+      prune: true # if you delete from Git, argocd also deletes it from cluster
+      selfHeal: true # Revert the changes that were done manually in cluster, to sync git repo

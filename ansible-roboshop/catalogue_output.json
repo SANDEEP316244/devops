@@ -1,0 +1,22 @@
+{
+        "changed": true,
+        "cmd": [
+            "mongosh",
+            "mongodb.daws86s.fun",
+            "--quiet",
+            "--eval",
+            "db.getMongo().getDBNames().indexOf('catalogue')"
+        ],
+        "delta": "0:00:01.146751",
+        "end": "2025-10-07 03:13:30.862885",
+        "failed": false,
+        "msg": "",
+        "rc": 0,
+        "start": "2025-10-07 03:13:29.716134",
+        "stderr": "",
+        "stderr_lines": [],
+        "stdout": "-1",
+        "stdout_lines": [
+            "-1"
+        ]
+    }

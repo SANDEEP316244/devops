@@ -1,0 +1,16 @@
+plugin: amazon.aws.aws_ec2
+regions:
+- us-east-1
+filters:
+  tag:Name: frontend
+  instance-state-name : running
+hostnames:
+  - private-ip-address
+compose:
+  # This sets the `ansible_host` variable to connect with the private IP address without changing the hostname.
+  ansible_host: private_ip_address
+keyed_groups:
+  # add hosts to tag_Name_value groups for each aws_ec2 host's tags.Name variable.
+  - key: tags.Name
+    prefix: "dynamic" # dynamic_frontend
+    separator: "_"

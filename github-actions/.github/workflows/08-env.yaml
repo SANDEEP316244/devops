@@ -1,0 +1,51 @@
+name: Environment Example
+
+on: [push]
+
+# -------------------------
+# WORKFLOW-LEVEL ENV
+# -------------------------
+env:
+  APP_NAME: my-app
+  GLOBAL_TIMEOUT: 30
+  OWNER: "Join DevOps"
+
+jobs:
+  demo:
+    runs-on: ubuntu-latest
+
+    # -------------------------
+    # JOB-LEVEL ENV
+    # -------------------------
+    env:
+      JOB_ENV: "job-level-value"
+      REGION: "ap-south-1"
+
+    steps:
+      - name: Show workflow-level + job-level env
+        run: |
+          echo "APP_NAME: $APP_NAME"
+          echo "GLOBAL_TIMEOUT: $GLOBAL_TIMEOUT"
+          echo "OWNER: $OWNER"
+          echo "JOB_ENV: $JOB_ENV"
+          echo "REGION: $REGION"
+
+      # -------------------------
+      # STEP-LEVEL ENV
+      # -------------------------
+      - name: Step with custom environment variables
+        env:
+          APP_NAME: "my-app-step"
+          STEP_VAR2: "world"
+        run: |
+          echo "APP_NAME: $APP_NAME"
+          echo "STEP_VAR2: $STEP_VAR2"
+
+      # -------------------------
+      # Referencing GitHub default variables
+      # -------------------------
+      - name: Using GitHub context
+        run: |
+          echo "REPO: ${{ github.repository }}"
+          echo "BRANCH: ${{ github.ref_name }}"
+          echo "COMMIT: ${{ github.sha }}"

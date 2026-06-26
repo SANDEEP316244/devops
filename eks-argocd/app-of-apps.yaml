@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: platform-root
+  namespace: argocd # This must match the namespace where Argo CD is installed
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/daws-86s/eks-argocd.git
+    targetRevision: main # Specifies the branch, tag, or commit to sync to
+    path: applications
+  destination:
+    server: https://kubernetes.default.svc # Current Cluster
+    namespace: argocd
+  syncPolicy:
+    automated:
+      prune: true # if you delete from Git, argocd also deletes it from cluster
+      selfHeal: true # Revert the changes that were done manually in cluster, to sync git repo

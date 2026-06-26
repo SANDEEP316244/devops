@@ -1,0 +1,11 @@
+groups:
+- name: HighRamUsage
+  rules:
+  - alert: monitoring
+    expr: (1 -(node_memory_MemAvailable_bytes/node_memory_MemTotal_bytes)) * 100 > 20
+    for: 1m
+    labels:
+      severity: Critical
+    annotations:
+      summary: "High RAM usage on {{ $labels.instance }}"
+      description: "Ram Usage is above 70% for more than 5 minutes."

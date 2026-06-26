@@ -1,0 +1,21 @@
+Varialbes
+==============
+NAME=Trump
+
+$NAME
+${NAME}
+
+Data types
+
+Conditions
+=============
+if, if else
+when
+
+Loops
+============
+{{ item }}
+
+ansible all -i 172.34.23.53, 
+
+ansible all -i "172.34.23.53,172.34.23.54" 

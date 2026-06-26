@@ -1,0 +1,5 @@
+deployment:
+  imageRepo: joindevops/catalogue
+  imageVersion: v1
+service:
+  servicePort: 8080 # default value

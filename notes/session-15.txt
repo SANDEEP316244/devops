@@ -1,0 +1,94 @@
+clone the repo
+add to staging area -> git add
+commit to local -> git commit -m "message"
+
+git config --global user.name ""
+git config --global user.email ""
+
+git log
+
+push to central -> git push origin main
+sign in with browser
+
+#!/bin/bash
+
+DRY, reusability, maintainability
+change is single place reflects everywhere you refer
+
+VAR_NAME=VALUE
+
+$VAR_NAME
+${VAR_NAME}
+
+sh 04-variables.sh Trump Putin
+
+$1=Trump
+$2=Putin
+
+ENV variables
+==============
+export COURSE="DevSecOps with AWS" -> ENV variables, this variable is valid until this process is alive, it is accessible to sub process also
+
+~/.bashrc
+
+enter the variable with value in this file
+source .bashrc
+
+how do you run a command inside shell script and take the output
+
+script start time
+script end time
+executed in end time - start time seconds
+
+VAR_NAME=$(command)
+
+1. declare inside script
+2. pass the values as args
+3. read command
+4. ENV variables
+5. dynamic execution of commands
+
+
+Variables
+Data types
+Conditions
+Functions
+Loops
+Error handling
+
+Data types
+============
+sivakumar reddy -> name
+13 -> number
+
+12.22 -> decimal
+12 -> integer
+3+4i -> complex number
+log34 -> logarithm
+
+integer -> -33,768 to 33,768
+string -> devops aws shell
+boolean -> true or false
+char -> a b c d
+float -> 33.34
+decimal -> 33.836419859
+long -> 9873471328
+
+int i=0, j=0
+
+VAR_NAME=VALUE
+
+int i=58914710.59147590
+
+there are no explicit data types in shell script. everything in shell is considered as string..
+
+copied code from 4 to 5..
+
+long i = 15960km/hr
+long i = 158967.547km/hr
+
+Name=DevOps
+Name=("Linux" "Shell" "Docker")
+
+0 1 2 3
+index starts from 0

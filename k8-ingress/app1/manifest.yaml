@@ -1,0 +1,68 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app1
+  # these are replica set labels
+  labels:
+    purpose: ingress-demo
+    project: roboshop
+    app: app1
+spec:
+  replicas: 2
+  selector:
+    # these labels are used to select pods
+    matchLabels:
+      purpose: ingress-demo
+      project: roboshop
+      app: app1
+  # pod definition
+  template:
+    metadata:
+      labels:
+        # purpose: dp-demo
+        purpose: ingress-demo
+        project: roboshop
+        app: app1
+    spec:
+      containers:
+      - name: app1
+        image: joindevops/app1:v1
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: app1
+spec:
+  selector:
+    purpose: ingress-demo
+    project: roboshop
+    app: app1
+  ports:
+    - protocol: TCP
+      port: 80 # service port
+      targetPort: 80 # container port
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: app1
+  annotations:
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS": 443}]'
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:160885265516:certificate/a1f7483d-ee32-446c-a9b9-e7fdcca18ff6
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/tags: Environment=dev,Project=roboshop
+    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/group.name: roboshop
+spec:
+  ingressClassName: alb
+  rules:
+  - host: "app1.daws86s.fun"
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: app1
+            port:
+              number: 80

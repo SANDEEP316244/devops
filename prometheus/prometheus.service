@@ -1,0 +1,11 @@
+[Unit]
+Description=A simple custom service
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/opt/prometheus/prometheus --config.file=/opt/prometheus/prometheus.yml
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

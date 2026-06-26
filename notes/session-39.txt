@@ -1,0 +1,24 @@
+Load Balancer == Manager/Lead/DM
+Listener = Whom we are listening to. Delivery Manager -> BA. Lead -> Manager. Manager -> DM
+Rule -> if frontend work assign to frontend team
+Target group -> Team
+Health check -> availability check
+Instance -> Team member
+
+Instance-1 should accept traffic from Instance-2
+
+Instance-1 security group inbound rules should allow IP address of Instance-2
+
+Instance-1 has sg attached, instance-2 has sg attached
+
+you should allow sg-id instead of IP address. It means whatever the instane attached with that sg it will be allowed
+
+ALB -> Listener -> Rule forwarding to target group -> 
+
+http://ALB-URL:80
+
+frontend-alb.daws86s.fun -> ALB DNS
+
+a accepting from b -> ingress rule of a should allow sg id attached to b
+
+b accepting from a -> ingress rule of b should allow sg id attached to a

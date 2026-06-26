@@ -1,0 +1,45 @@
+name: Inputs Demo
+
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: "Enter your name"
+        required: true
+        default: "DevOps Engineer"
+
+      env:
+        description: "Select environment (GitHub environment type)"
+        required: true
+        type: environment
+
+      deploy:
+        description: "Do you want to deploy?"
+        type: boolean
+        required: true
+        default: false
+
+      log_level:
+        description: "Choose log level"
+        type: choice
+        options:
+          - info
+          - warn
+          - error
+        required: true
+        default: info
+
+      retry_count:
+        description: "Number of retries"
+        required: false
+        default: "3"
+
+jobs:
+  print-inputs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Inputs
+        run: |
+          echo "Name: ${{ github.event.inputs.name }}"
+          echo "Environment: ${{ github.event.inputs.env }}"
+          echo "Retry Count: ${{ github.event.inputs.retry_count }}"

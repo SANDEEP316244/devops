@@ -1,0 +1,135 @@
+Variables
+===========
+1. declare and assign values inside the script
+2. pass from outside as args
+3. read command
+4. ENV variables
+5. special variables
+
+datatypes
+==========
+fruits=("Apple" "Banana")
+
+"$VAR_NAME"
+"${VAR_NAME}"
+
+index starts from 0
+
+conditions
+===============
+
+umbrella sunglasses
+
+alogorithm or thinking is important. no code at this stage just plain english
+
+if/else, when
+
+if it is raining
+	take umbrella
+else
+	take sunglasses
+	
+if(expression){
+	these statements if expression is true
+}
+else{
+	these statements if expression is false
+}
+
+! is negative
+
+if(!expression){ # false*false = true
+	these statements if expression is true
+}
+else{
+	these statements if expression is false
+}
+
+if [ condition ]; then
+    # Commands to execute if condition is true
+fi
+
+
+if [ condition ]; then
+    # Commands to execute if condition is true
+else
+    # Commands to execute if condition is false
+fi
+
+number < 10
+given number is less than 10
+else
+given number is greater than or equal to 10
+
+if a number is divided by 2 then even otherwise odd
+
+15/2
+
+take the number
+divide by 2 and get the reminder
+if it is equal to 0 then it is even
+otherwise it is odd
+
+write a script to know a number is prime or not
+
+Exit status
+=============
+dnf install mysql -y
+
+$? -> previous command exit status
+
+0 -> SUCCESS
+1-127 -> FAILURE
+
+check if the user has root access or not
+if root access then proceed
+otherwise stop and tell them to run with root access
+
+dnf install mysql -y
+
+check exit status, if 0 success
+otherwise show the user it is failed
+
+
+if id -u is 0 then proceed
+otherwise stop
+
+if there is error in script, proceed or stop?
+
+mysql nginx mongodb-mongosh
+
+scripting/programming
+=====================
+1. keep less lines more performance
+2. readability
+3. DRY, try to reuse the code
+
+functions
+====================
+takes some inputs and gives some output
+
+1. call it
+2. provide inputs if required
+
+func_name(){
+
+}
+
+func_name
+
+Red - "\e[31m"
+
+SUCCESS - Green
+FAILURE - Red
+SKIP - Yellow
+
+Logs
+==================
+/var/log/shellscript-logs/15-colors.log
+
+Redirections
+===================
+1 -> success
+2 -> failure
+& -> success/failure
+

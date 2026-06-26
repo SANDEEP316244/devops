@@ -1,0 +1,85 @@
+File Ownership
+================
+chmod -> either the owner of the file or root
+chown <user>:<group> file/folder --> not even owner can change the ownership, only root user
+
+chown -R -> recursive. all files and folders inside
+
+How a user can login with keys
+==============================
+/home/suresh/.ssh
+authorized_keys -> suresh public key
+
+ssh -i suresh suresh@IP
+
+An employee should generate keys..
+
+ssh-keygen -f ramesh
+ramesh.pub
+ramesh -> private key
+
+sivakumar should send his public key to admins
+
+1. useradd sivakumar
+2. admin should create .ssh folder in /home/sivakumar
+3. permissions should be 700 for .ssh means only owner has full access
+4. .ssh ownership should be only sivakumar including group
+5. create authorized_keys inside .ssh with max permissions 600 and again ownership should be sivakumar
+6. keep the public file from sivakumar inside authorized_keys
+
+ssh -i sivakumar sivakumar@3.87.244.153
+
+/etc/sudoers -> sudoers information
+vimsudo -> edit safely with syntax checks
+
+How to give sudo access to user?
+
+add him to wheel group and then modify /etc/sudoers wheel group without password
+
+usermod -aG wheel sivakumar
+/etc/sudoers ->
+
+how many ports in a computer -> 0 - 65,535
+
+Delhi -> HYD courier
+
+gandhi apartments, ameerpeta, hyd, 500082
+102
+
+https://facebook.com -> facebook web application
+username and password we can able to see our home feed
+
+protocol -> https (443)
+IP
+
+Package management
+===================
+package managers
+
+dnf is the command to install/remove the packages from server
+previously called as yum
+
+RHEL => dnf install <package-name>
+Ubuntu => apt-get install <package-name>
+
+/etc/yum.repos.d
+
+dnf list installed -> already installed in server
+dnf list available -> not installed but available in web repos
+
+install remove update info
+
+Service Management
+==================
+nginx -> http web server
+systemctl start nginx
+systemctl status nginx
+
+http://3.87.244.153:80
+
+systemctl stop nginx
+systemctl restart nginx
+
+systemctl enable nginx -> whenever system restarted automatically this nginx will run
+systemctl disable nginx
+

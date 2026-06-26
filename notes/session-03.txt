@@ -1,0 +1,98 @@
+ssh-keygen -f daws-86s
+
+ssh -i <private-key> ec2-user@IP
+
+inbound -> SSH 22 0.0.0.0/0
+outbound -> All traffic -> 0.0.0.0/0
+
+C:\Users\siva
+
+GitBash -> Mini Linux
+
+cd /c/devops/daws-86s
+
+/c/devops/daws-86s -> absolute. starts from root directory
+daws-86s  --> relative. make sure you have that file exist file
+
+<command-name> <inputs> <options>
+
+inputs, options are sometime mandatory sometimes optional
+
+copy source destination
+
+uname -> command
+-a -> one of the option
+
+pwd -> print working directory
+$ -> normal user
+# -> root user
+
+/root -> root user home directory
+/home/<user-name> -> /home/ec2-user
+
+/ --> starting path. root path
+
+CRUD -> Create Read Update Delete
+
+touch <file-name> -> create the file
+
+ls -> list subdirectories
+
+cat > file-name
+
+enter the text... press enter and then ctrl+d
+
+> -> redirection
+>> -> don't replace, just add/append
+
+mkdir -> make directory
+rmdir -> deletes the directory
+
+rm -r -> delete recursively, means delete the contents also inside the directory
+
+cd .. -> one step back
+
+Cd != cd
+
+ls -l -> alphabetical order
+ls -lr -> reverse alphabetical order
+ls -lt -> latest on top
+ls -ltr -> oldest on top
+
+cp <source> <destination>
+
+mv <source> <destination> -> moves/cut the file
+. -> represents current directory
+
+grep -> search the text inside file
+
+grep <word-to-search> <file-name>
+
+grep -n -> line number
+grep -c -> count of lines the word occured
+grep -i -> ignore the case
+grep -v -> invert, non matching lines
+
+~/.ssh/config
+config should not have any file extensions
+
+Host *
+    ServerAliveInterval 60
+    ServerAliveCountMax 3
+
+wget <url> -> Downloads the file
+curl <url> -> print the information on the screen
+
+https://raw.githubusercontent.com/daws-86s/notes/refs/heads/main/session-02.txt
+
+printf Hello World
+
+echo "Hello World"
+
+cut command can delimit the text and give us the required fragment
+
+awk -F "/" '{print $1F}'
+
+sudo su - -> I will land into root user home directory
+sudo su -> land into same directory as root
+

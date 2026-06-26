@@ -1,0 +1,42 @@
+name: Print All GitHub Contexts
+
+on:
+  workflow_dispatch:
+    inputs:
+      sample_input:
+        description: "Example input"
+        required: false
+        default: "hello"
+
+jobs:
+  show-contexts:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Print github context
+        run: |
+          echo '${{ toJSON(github) }}'
+
+      - name: Print env context
+        run: |
+          echo '${{ toJSON(env) }}'
+
+      - name: Print job context
+        run: |
+          echo '${{ toJSON(job) }}'
+
+      - name: Print runner context
+        run: |
+          echo '${{ toJSON(runner) }}'
+
+      - name: Print steps context
+        run: |
+          echo '${{ toJSON(steps) }}'
+
+      - name: Print inputs context
+        run: |
+          echo '${{ toJSON(inputs) }}'
+
+      - name: Print matrix context
+        run: |
+          echo '${{ toJSON(matrix) }}'

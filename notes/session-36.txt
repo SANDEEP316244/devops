@@ -1,0 +1,37 @@
+VPC with CIDR
+IGW and attach to VPC
+Subnets with CIDR
+Route tables
+Route tables association with subnets
+Routes
+EIP
+NAT
+Add NAT route to private subnets
+
+project_name-environment-<resource_name>
+
+public 		private 	database
+frontend	backend		data related
+
+VPC peering
+============
+if we want communication between multiple VPC, we need peering. By default one vpc can't communicate with another VPC
+
+1. VPC's should not have same CIDR
+2. routes also should be available
+
+same region VPC
+diff region VPC
+diff account diff region VPC
+
+Village-1 to Village-2
+
+source = village-1
+destination = Village-2
+
+
+172.31.0.0/16
+
+172.31.1.221
+
+173.45.25.36

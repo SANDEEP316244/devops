@@ -1,0 +1,5 @@
+deployment:
+  imageRepo: joindevops/mongodb
+  imageVersion: v1
+service:
+  type: ClusterIP

@@ -1,0 +1,32 @@
+instances=['mongodb','redis','mysql','rabbitmq','catalogue','user','cart','shipping','payment','frontend']
+
+ansible-playbook -i inventory.ini main.yaml -e "component=mongodb"
+ansible-playbook -i inventory.ini main.yaml -e "component=redis"
+ansible-playbook -i inventory.ini main.yaml -e "component=mysql"
+ansible-playbook -i inventory.ini main.yaml -e "component=rabbitmq"
+
+app setup
+nodejs setup
+systemd
+
+catalogue is one role, common is another role
+catalogue should import the tasks in common role
+
+mongodb-dev.daws86s.fun
+mongodb-qa.daws86s.fun
+
+mongodb.daws86s.fun
+
+when there is a change in something notify others to reload
+
+notifiers or handlers
+
+template
+==========
+fixed form with placeholders
+
+templatising file is nothing but keeping the placeholders, submitting the actual values at runtime.
+
+jinja2 templating
+
+ansible templates are jinja2 formatted files, there will be placeholders inside the file, actual values will be submitted at runtime and copied to remote server

@@ -1,0 +1,11 @@
+2025-09-26 09:00:01 INFO  Application started successfully on joindevops server
+2025-09-26 09:01:10 ERROR Database connection failed at host=db01.joindevops.local
+2025-09-26 09:01:15 INFO  Retrying database connection
+2025-09-26 09:01:30 WARN  Connection is slow, check joindevops monitoring
+2025-09-26 09:02:00 ERROR Database connection failed again on joindevops cluster
+2025-09-26 09:02:15 INFO  Switching to backup database
+2025-09-26 09:03:10 INFO  Backup database connected successfully
+2025-09-26 09:05:20 WARN  Memory usage above 80% on joindevops node
+2025-09-26 09:06:30 ERROR User authentication failed for user=admin@joindevops
+2025-09-26 09:08:45 INFO  User login successful: user=john@joindevops
+2025-09-26 09:10:00 INFO  Application running normally in joindevops environment

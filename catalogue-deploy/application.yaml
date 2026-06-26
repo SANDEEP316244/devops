@@ -1,0 +1,38 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: catalogue
+  namespace: argocd
+spec:
+  generators:
+  - list:
+      elements:
+      - env: dev
+        namespace: argocd
+        server: https://kubernetes.default.svc
+      - env: qa
+        namespace: argocd
+        server: https://kubernetes.default.svc
+      - env: prod
+        namespace: argocd
+        server: https://kubernetes.default.svc
+  template:
+    metadata:
+      name: catalogue-{{env}}
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/daws-86s/eks-argocd.git
+        targetRevision: main
+        path: .
+        helm:
+          releaseName: catalogue
+          valueFiles:
+            - values-{{env}}.yaml
+      destination:
+        server: {{ server }}
+        namespace: {{namespace}}
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true

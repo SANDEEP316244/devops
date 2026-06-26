@@ -1,0 +1,58 @@
+variables
+data types
+conditions
+loops
+
+functions
+===========
+taking input and providing the output, execute whenever we call
+
+functions == filters
+we can write functions but we need to write python code..
+
+we can use default in built functions from ansible
+
+DevOps, Linux, Shell, Ansible -> String
+,
+DevOps
+Linux
+Shell
+Ansible
+
+gather_facts
+
+facts == variables
+
+255.255.255.255
+
+345.4329.43209.4332
+
+shell vs command
+================
+ansible -> node
+
+remote login -> take login, execute command and comeout
+
+or login inside the server and execute the command
+
+when we dont have readymade modules available, we can execute command or shell module
+
+command -> a simple command no need of access to shell environment like variables, bash, piping, etc..
+shell Module -> can access variabless, pipes, redirections, shell environment, etc.
+
+VAR_NAME=$(command)
+
+1. we can handle
+2. we can't handle
+
+creating the user but user already exist
+
+id roboshop -> 
+
+Roboshop using Ansible
+======================
+Instances creation
+
+1. create instance
+2. update r53 record private ip if not frontend, if frontend updated public ip
+

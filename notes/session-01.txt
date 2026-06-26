@@ -1,0 +1,150 @@
+SDLC
+======
+Software Development Lifecycle
+
+Business Analyst
+
+Business
+Requirements gathering
+Planning and Designing
+Implementation
+Deployment
+Testing
+Release into public
+
+Maintanance
+
+Waterfall
+===========
+School Management System
+
+Stakeholders --> Who is part of the system
+
+Teachers Students Parents Staff(Principal) Investors and Management Government
+
+Grand Final
+100 years
+
+Students -> they don't read from DAY-1
+Teachers -> they don't teach from DAY-1
+Parents -> They worry from DAY-1
+
+20-30%
+why 70% failed
+
+Problems
+=========
+1. only exam time. scared about exam
+2. teachers wont ask to study seriously
+
+Changes
+==========
+UNIT Tests - I, II, III, IV
+Quarterly, Half yearly, Pre-Final
+
+20-30%
+
+II --> 30-35%
+
+80%
+
+Changes
+=========
+Slip/Daily tests
+
+365 days
+200 days
+150 slip tests
+
+95%
+
+Gurukul -> Waterfall
+Unit test --> Agile
+Daily Tests -> DevOps
+
+Waterfall
+=========
+2 years --> 100cr
+
+requirements
+1 year
+
+development, testing
+
+6 months
+after 6 months testing
+
+100 defects --> 10 invalid defects
+
+Ferrari -> Maruti 800
+
+Agile
+=========
+Sprint basis
+
+Signup Login
+Product management
+Order management
+Shipping and delivery
+Payment
+Reviews
+
+SPRINT-1
+========
+Signup and Login
+
+1 month
+
+15 days development
+15 days testing and deployment
+
+10 -> 2 invalid defects
+
+development and testing is improved
+
+Ferrari --> Honda City
+
+SPRINT-2
+========
+Product management
+Backlog and bug fixing
+
+Final product
+
+DevOps
+=======
+Development --> DEV and SIT Deploy(Build and Release) --> Testing
+
+Whatever the code developed by developer should be tested and deployed on the same days
+
+Signup form
+===========
+Enter your firstname
+Enter your lastname
+
+2 defects -> 1 invalid defects
+
+DevOps is the process developing, building, deploying and testing on the same day, that can improve co-ordination between all the teams. We use multiple DevOps tools to acheive this. Configuration management, CICD, etc.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

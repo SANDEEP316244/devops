@@ -1,0 +1,64 @@
+Terraform
+===========
+setup
+variables
+data types
+conditions -> expression ? "true-value": "false-value"
+loops
+	count based -> list
+	for each -> set/map
+	dynamic block
+functions -> in built functions
+
+data sources -> query the existing info from provider
+locals -> store expressions, functions. we can reuse them. cant override these values. we can variables inside locals
+state -> matching desired infra with actual infra using state
+remote state -> keep the state secure, for colloboration as well. locking it
+provisioners -> when we create ec2 instances we can use provisioners to configure or perform next actions
+
+local-exec -> runs the commands in local i.e where terraform command is executed
+
+provisioner "local-exec" {
+	command = ""
+	on_failure = continue
+	when = destroy
+}
+
+remote-exec
+=============
+terraform can connect to ec2 instance and configure it using remote-exec. basically running commands inside the server
+
+How to create multiple environments using terraform
+===================================================
+1. using .tfvars
+2. terraform workspaces
+3. individual repos
+
+tfvars
+========
+override the default values of the variables
+
+DEV and PROD
+
+tags
+=====
+common tags
+	Project = Roboshop
+	Terraform = true
+
+seperate tags
+	component = catalogue
+	Environment = dev/prod
+	
+Terraform Workspace
+=====================
+terraform.workspace = dev
+
+lookup(map, key, default)
+
+maintain different repos for different environments
+================================
+roboshop-infra-dev
+roboshop-infra-prod
+
+

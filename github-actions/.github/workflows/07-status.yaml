@@ -1,0 +1,39 @@
+name: Job Post Section Example
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # -------------------------
+      # Main job steps
+      # -------------------------
+      - name: Checkout
+        run: echo "Cloning repo..."
+
+      - name: Run build
+        run: |
+          echo "Running build..."
+          exit 1   # simulate failure
+
+      # -------------------------
+      # POST SECTION (Jenkins style)
+      # -------------------------
+
+      - name: Post - Success
+        if: ${{ success() }}
+        run: echo "🎉 Job SUCCESS — run success tasks here"
+
+      - name: Post - Failure
+        if: ${{ failure() }}
+        run: echo "❌ Job FAILED — run failure actions here"
+
+      - name: Post - Cancelled
+        if: ${{ cancelled() }}
+        run: echo "🛑 Job CANCELLED — run cancel handlers here"
+
+      - name: Post - Always
+        if: ${{ always() }}
+        run: echo "🔄 ALWAYS — this runs no matter what (cleanup)"

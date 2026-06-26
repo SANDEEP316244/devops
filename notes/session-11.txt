@@ -1,0 +1,75 @@
+Roboshop e-commerce project
+============================
+
+Database
+App/Backend tier
+Frontend
+
+MySQL -> RDBMS tables and columns. strict format
+
+Product -> name, description, vendor data, faq, reviews, ratings, price, discount, emi options, etc.
+
+data is in documents format, access is little fast compare to SQL
+MongoDB is popular NoSQL database. 
+key -> value
+
+{
+	"name": "some food",
+	"price": "123INR",
+	"description": "food products daily consumable",
+	"expiry": "01-01-2026"
+}
+
+{
+	"name": "a toy",
+	"price": "123INR",
+	"description": "food products daily consumable",
+	"subscription": "yes, montly"
+}
+
+/etc/yum.repos.d/
+
+MongoDB -> 27017
+
+127.0.0.1:27017 -> only localhost
+0.0.0.0
+
+useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop
+
+/etc/systemd/system/catalogue.service
+
+[Unit]
+Description = Catalogue Service
+
+[Service]
+User=roboshop
+Environment=MONGO=true
+// highlight-start
+Environment=MONGO_URL="mongodb://<MONGODB-SERVER-IPADDRESS>:27017/catalogue"
+// highlight-end
+ExecStart=/bin/node /app/server.js
+SyslogIdentifier=catalogue
+
+[Install]
+WantedBy=multi-user.target
+
+
+http://daws86s.fun/api/catalogue/products/Artificial%20Intelligence
+
+Redis
+=======
+cache in memory data base
+
+disk(HD) --> RAM --> App can access
+
+applications -> Database time taking process
+
+applications -> cache -> database --> store in cache --> show to user
+
+CM --> PA
+
+person --> PA --> CM
+
+ctrl + ]
+quit
+

@@ -1,0 +1,33 @@
+name: "Update Commit Status"
+description: "Updates GitHub commit status checks using the GitHub Statuses API"
+
+inputs:
+  sha:
+    description: "Commit SHA to update"
+    required: true
+  state:
+    description: "Status: success, failure, pending, error"
+    required: true
+  context:
+    description: "Status check context name (ex: DOCKER_BUILD)"
+    required: true
+  description:
+    description: "Optional description for the status"
+    required: false
+    default: ""
+
+runs:
+  using: "composite"
+  steps:
+    - name: Update commit status
+      shell: bash
+      run: |
+        curl -X POST \
+          -H "Authorization: Bearer ${{ github.token }}" \
+          -H "Content-Type: application/json" \
+          --data "{
+            \"state\": \"${{ inputs.state }}\",
+            \"context\": \"${{ inputs.context }}\",
+            \"description\": \"${{ inputs.description }}\"
+          }" \
+          "https://api.github.com/repos/${{ github.repository }}/statuses/${{ inputs.sha }}"

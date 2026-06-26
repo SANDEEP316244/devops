@@ -1,0 +1,45 @@
+1. check shipping service
+
+1. delete old log files
+
+/var/log/roboshop-logs
+
+cart-2025-26-09.log
+
+1. find the files. only .log files
+2. older than 14 days
+3. then delete
+
+find <where-to-find> -name "*.log" -mtime +14
+
+find / -name "*.log" -mtime +14
+
+while [ condition ]
+do
+  # Commands to be executed
+done
+
+1. I will check source dir exist or not
+2. find the files
+3. log the files going to be deleted
+4. delete
+
+backup script
+==============
+source dir
+destination dir
+
+find the files older than 14 days
+zip them
+move to destination
+some team will pick those files and keep them in storage servers
+delete the files in source dir
+
+sh backup.sh <source-dir> <destination-dir> <days>[optional]
+
+1. check 2 args received or not 
+2. check source dir exist or not
+3. check destination dir exist or not
+
+
+

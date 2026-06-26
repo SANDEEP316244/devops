@@ -1,0 +1,136 @@
+Why Scripting?
+
+Automation goals: Speed and Accuracy
+
+1. Speed
+2. Accuracy, no human errors
+3. Consistency
+4. Scalability, can work for infinite number of servers
+5. Documentaion. What happened including history
+6. Reusability.
+
+Where to store scripts?
+
+1. Security
+2. Can't share with others
+3. Version control.
+
+Repositories/Version Control System
+
+Centralised vs Decentralised/Distributed
+========================================
+Centralised capital
+
+1. Single point of failure
+2. Pollution
+3. Over crowd
+4. Social unrest
+5. Resources shortage
+
+Mumbai -> Movies and financial, transporation
+Chenai -> Manfacturing
+Bangalore -> IT
+Kolkata -> Manfacturing
+
+SVN -> Sub version control
+
+Central Library
+=================
+1. What if library is closed on holidays?
+2. What if library building collapsed?
+3. Crowd and their facilities
+
+LMS
+=====
+local libraries
+
+1. they can rent books to us
+
+Git is a concept -> Linus Torwalds
+
+GitHub -> All opensource products code is here
+Bitbucket
+Gitlab
+
+
+git clone <repo-url> -> code will be downloaded into our laptop
+
+normal folder vs git repo
+
+git repo will have .git as hidden directory
+
+branching -> create another duplicate copy, do the changes the here and then take the approval from colleagues and team member, test them as well. if everything is fine then merge with main branch
+
+IDE tool -> Integrated development environment
+
+Eclipse
+IntelliJ
+Vs code
+sublime editor
+notepad++
+Textpad
+
+vscode -> workspace -> staging area -> commit to local repo -> central repo
+
+20 files -> 10 files completed changes, 10 files middle
+
+what is staging area?
+it is a temp area. where we can stage the required files for commit..still we have a chance to take back into workspace..
+
+what is local commit?
+commit into local repository nothing but laptop. commit time will be logged, who commited will be logged, why they commited also will be logged
+
+push to central/remote repo?
+
+push to central repo..others can just run git pull(pull the changes from central to local repo)
+
+git clone vs git pull
+=====================
+clone -> first time downloading the code
+pull -> just pull the changes
+
+staging area -> git add <file-name>
+local commit -> git commit -m "first commit, hello world started"
+push to central repo -> git push origin main
+
+1. signup to github
+2. install vs code
+3. open folder in vs code where you store all repos
+create repo in github
+4. clone the repo
+5. do something
+6. add to staging area
+7. commit to local repo
+8. push to central repo
+
+#!/bin/bash -> Shebang
+
+it should be the first line in shell script, it is the interpret to check the syntax of the script and execute them
+
+k shell, c shell, z shell, etc.
+
+bash shell
+
+sh == bash
+
+file extension -> .sh
+
+git add . -> all changes will be staged.
+
+git add . ; git commit -m "some message"; git push origin main
+
+Don't do or edit anything inside server.
+
+Let x=0, y=1 -> variables
+derive the formula
+final substitute
+
+variable is a container that holds something/value.
+
+DRY -> don't repeat yourself
+Reusability
+Flexibilty -> prevents accidental edits
+Readability -> 
+Maintanance
+
+VAR_NAME=VALUE

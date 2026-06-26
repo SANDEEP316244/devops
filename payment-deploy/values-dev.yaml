@@ -1,0 +1,7 @@
+configMap:
+  CART_HOST: "cart"
+  USER_HOST: "user"
+  AMQP_HOST: "rabbitmq"
+  AMQP_USER: "roboshop"
+  AMQP_PASS: "roboshop123"
+

@@ -1,0 +1,50 @@
+ansible configuration
+====================
+1. ANSIBLE_CONFIG env variable
+2. pwd
+3. home directory
+4. /etc/ansible/ansible.cfg
+
+logs
+debug -vvv
+
+include_role vs import_role
+
+include_role
+==============
+it includes at run time, checks while processing. include will not respect tags. We must explicitly set inside the tasks
+
+import_role
+==============
+imports the role before exection and parse it, checks before processing. applying tags at the import setup to all the tasks automatically.
+
+dynamic inventory
+===============
+autoscaling, when trafic increase servers will be increased
+a plugin is provided aws and ansible to fetch the IP address dynamically
+
+query aws
+us-east-1, ec2, running and name should be frontend
+
+tasks -> execute something on the remote/target server
+plugins -> connects to other system and fetch required information
+
+*.aws_ec2.yml/yaml
+
+ansible can connect to AWS dynamically to fetch the IP address using dynamic inventory plugin(amazon.aws.aws_ec2), this helps in autoscaling kind of environment, where fetching the IP address statically is not possible
+
+secrets
+==========
+vault -> secured place to keep the secrets
+
+ansible-vault
+
+ansible-vault create vault.yaml
+
+secrets manager
+===============
+AWS is a platform
+
+hashicorp vault
+
+store key inside the server

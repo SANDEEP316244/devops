@@ -1,0 +1,11 @@
+[Unit]
+Description=A simple custom service
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/opt/alertmanager/alertmanager --config.file=/opt/alertmanager/alertmanager.yml
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

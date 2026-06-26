@@ -1,0 +1,128 @@
+Java -> Maven
+Build file -> pom.xml
+packaging type -> .jar java archieve file
+
+mvn validate -> validates the project structure
+mvn compile -> compile the source code, creates target folder and keep .class files
+mvn package -> pack/build the application into .jar file in target folder
+mvn clean -> clean the previous compile or builds
+mvn test -> run the unit test cases developed by developers
+
+mvn clean package = clean+validate+compile+test+package
+
+RabbitMQ
+============
+Synchronus vs Asynchronus
+
+PostBox
+
+HYD -> Chennai
+
+Drop it in postbox then carry on with your work. Someone will pick up -> Asynchronus
+
+HTTP
+Laptop -> Server
+30sec - 1min will wait and then if no response then timeout
+
+joindevops -> Ramesh
+
+PERSON-A is sending message to PERSON-B
+
+PERSON-B is not online, message should be stored somewhere and then delivered when he is ONLINE
+
+MQ -> Message Queue
+
+Synchronus -> expects response immidiately for example in 1 min, if no response then error
+Asynchronus -> Fire and forget. Sends the message then continue its work
+
+Tight Coupling -> complete dependency, if one system is down other systems dependent on this will be down
+
+Decoupling/Loose coupling -> SYS-A sends a message, even SYS-B is down message is stored and delivered when it is online..
+Relibility -> Messages are stored until they delivered..
+Scalability -> We can send many requests at a time, all messages will be delivered in a queue
+
+point-to-point -> queue
+publish and subscribe -> topic
+
+producer -> sending a message to queue -> single consumer
+sending a message to topic -> whoever subscribe to this they all get the same message
+
+queue -> FIFO
+
+flipkart ekart
+
+we let customer place the order -> then send the order details to ekart queue
+
+{
+	"orderID": "1234erva",
+	"customer name": "ramesh"
+	"address": "ameerpet, hyd"
+}
+
+
+ActiveMQ
+RabbitMQ
+IBM MQ
+Kafka -> Huge data in big data environments
+
+Payment
+==========
+python files -> .py
+build tool -> pip
+build file -> requirements.txt(dependency information)
+
+10th class results link --> AP/TG gov
+
+AP/TG API Link
+
+hall ticket --> respond with results
+
+Manual Process
+=================
+1. too much time
+2. repeated same process
+3. too many errors
+4. tough to troubleshoot
+5. continous network connection
+
+create server
+configuring the server
+	install programming language
+	create system user
+	create directory
+		download the code
+		unzip the code
+		install dependency
+	create systemctl service
+		daemon-reload
+		restart the service
+	
+deployment
+===========
+1. remove old code
+2. download new code
+3. restart the service
+
+All are Linux commands.
+
+keep all the commands in a file in a sequence and run it -> shell script
+
+100 logs
+
+one log at a time
+keep all logs in a cart and carry to home
+
+common sense
+
+dnf install nginxxx -y
+
+we should supply that common sense to scripting
+
+if success then proceed, otherwise stop
+
+variables
+data types
+conditions
+loops
+functions
+error handling

@@ -1,0 +1,92 @@
+Shipping
+=============
+Java file extension -> .java
+Java build file -> pom.xml (project object model)
+
+project name, version, description, dependencies
+
+/bin/node index.js
+
+compilation
+=============
+source code -> written by developers
+byte code -> when you compile source code you get binary code.(if your source code does not have any errors then you get bytecode)
+
+0 1
+
+source code -> running the code -> machine understanding format is taking time
+
+javac HelloWorld.java
+
+HelloWorld.class
+
+Maven -> Build tool for java projects
+
+nodejs+npm(build command)
+
+Java + maven
+
+same firstname
+
+Ramesh S + DOB + Aadhar
+
+Roboshop -> project
+components/modules -> mysql, redis, mongodb, catalogue, user, etc..
+
+Amazon.com+cart -> US
+
+amazon.in+cart+v1.0 -> Indian amazon cart intial version
+amazon.in+cart+v2.0 -> Indian amazon cart intial version
+amazon.in+cart+v3.0 -> Indian amazon cart intial version
+
+Flipkart.com+cart
+Amazon.fun+cart
+
+GroupID -> in.amazon -> Project
+ArtifactID -> cart -> Component/Module
+Version -> 1.0 -> Version
+
+httpClient -> dependency
+com.joindevops.httpClient-1.0
+in.cloudcamp.httpClient-2.0
+
+hdfcbank.com -> Project
+
+savingbanking
+currentbanking
+demataccounts
+loan
+debitcards
+creditcards
+fd
+
+com.hdfcbank.savingbanking-1.0
+
+nodejs dependencies -> npm repository
+maven dependencies -> maven repository
+
+mvn clean package
+
+Maven Lifecycle
+=================
+Start -> End
+
+compile -> One of the lifecycle phase -> compile the sourcecode into bytecode
+test -> run the test cases written by developers
+
+starting from validate the code to deploy into server/maven central
+
+mvn validate
+mvn compile -> compile the source code
+mvn test -> test cases
+mvn package -> compile successfully, then package into a file
+
+.jar -> Java archeive file
+.exe -> is it single file? it is a package application
+.zip -> a single file, but inside there are multiple files
+
+packaging formats -> .jar .war .ear
+
+package = validate+compile+test+package(by default)
+
+mvn clean -> old compilation or old builds clean

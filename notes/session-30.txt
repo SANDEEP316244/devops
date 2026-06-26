@@ -1,0 +1,77 @@
+1. installed terraform, setup the env variable in system path
+2. aws cli v2 install
+3. aws configure
+
+terraform init
+terraform plan
+terraform apply
+terraform destroy
+
+resource "type_of_resource" "resource_name_our_wish" {
+	key = "value"
+}
+
+git -> repository to store only code.
+drive -> store files
+
+added into staging area
+commited to local repository
+but rejected from central repo
+
+rm -rf .git
+add .gitignore
+git init
+git branch -M main
+git remote add origin <URL>
+git add . ; git commit ; git push
+
+variables
+============
+DRY
+
+x=1, y=2
+
+final substitution
+
+variable "variable_name" {
+	default = "value-of-variable"
+}
+
+var.variable_name
+
+1. command line variable values have first prefernce
+2. terraform.tfvars
+3. env variable TF_VAR_<variable_name>
+4. default value
+5. finally prompt
+
+conditions
+==============
+if(expression){
+	this will run if expression is true
+}
+else{
+	this will run if expression is false
+}
+
+expression ? "this will run if true" : "this will run if false"
+
+count based loop
+================
+count.index -> special variable
+count = 10
+count.index -> 0
+count.index -> 1
+count.index -> 9
+
+works with list items
+
+var.instances[count.index].var.domain_name
+
+interpolation
+============
+concatinating variable and other content
+
+vars: # equal to variables.tf file
+	name: value # equal to one variable block
+	

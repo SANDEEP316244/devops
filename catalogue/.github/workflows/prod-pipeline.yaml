@@ -1,0 +1,22 @@
+name: NON-PROD Pipeline
+on: 
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Please enter SHA code"
+        required: true
+        type: string
+concurrency:
+  group: roboshop-catalogue-prod
+  cancel-in-progress: false
+permissions:
+  contents: read
+  statuses: write
+  security-events: read
+jobs: 
+  prod-pipeline:
+    if: github.ref == 'refs/heads/main'
+    uses: daws-86s/workflows/.github/workflows/prod-pipeline.yaml@main
+    with:
+      version: ${{ inputs.version }}
+    secrets: inherit

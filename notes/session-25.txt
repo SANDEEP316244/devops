@@ -1,0 +1,12 @@
+functions == filters
+error handling
+shell vs command
+ansible to create ec2 instances and r53 records
+
+ansible controller/server == where ansible installed
+
+console
+aws cli
+ansible
+terraform
+python

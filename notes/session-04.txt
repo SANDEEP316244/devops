@@ -1,0 +1,150 @@
+uname
+pwd
+touch
+cat
+cd
+mkdir
+rmdir
+rm -r
+cp
+mv
+grep
+cut
+awk
+piping
+echo
+ls
+curl
+wget
+
+vim editor
+============
+vi improved editor
+
+touch <file-name>
+cat >
+cat >>
+
+vim <file-name>
+1. if file already exists, it will open
+2. if file does not exists, then it will create and open
+
+Default mode is esc mode.
+
+
+Colon/Command Mode
+=================
+:wq -> write and quit
+:q! -> quit without saving
+:q -> just quit
+:set nu -> display line numbers
+:<line-number> -> cursor will go that line
+:/<word-to-search> -> search from top
+:?<word-to-search> -> search from bottom
+:<line-number>d -> deletes that line
+:noh -> no highlight
+:28s/root/ROOT -> line number 28, replace root with ROOT. It replaces the first occurence in that line
+
+:29s/root/ROOT/g -> g for global. means 29th line all root occurences should be replaced with ROOT
+
+:%s/root/ROOT/g -> all lines all occurences in the file
+
+Esc Mode
+============
+gg --> takes us to top of the file
+shift+g -> takes us to bottom of the file
+u -> undo
+ctrl+r -> redo
+dd -> deletes the line
+yy(yank) -> copies the line
+p -> paste below the line
+shift+p -> paste above the line
+
+head <file-name> -> displays top 10 lines of the file
+tail <file-name> -> displays bottom 10 lines
+
+head -n 8 | tail -n 3
+
+55-65
+
+head -n 65 | tail -n 11
+
+Linux Administration
+======================
+User Management
+
+User Groups Roles Permissions
+
+User -> A human
+Group -> A team of humans
+Roles -> position
+Permissions -> Access to the roles
+
+1. create user
+2. create group
+3. add user to the group
+4. remove user from the group
+5. remove user
+6. remove group
+
+1. create devops group
+2. create suresh user
+3. add suresh to devops group
+4. remove suresh from devops group
+5. remove suresh user
+
+useradd suresh -> creates suresh user
+groupadd devops -> creaes devops group
+
+id <user-name>
+id suresh
+uid=1001(suresh) gid=1001(suresh) groups=1001(suresh)
+
+when you create user in Linux, by default it will create one group with same username
+
+/etc/passwd
+suresh:x:1001:1001::/home/suresh:/bin/bash
+
+/etc/group
+devops:x:1002:
+
+/etc/shadow -> encrypted password
+
+A user in Linux must have 1 primary group and atleast 1 secondary group
+
+usermod -g <group-name> <user-name> --> adding suresh to devops group
+usermod -aG <group-name> <user-name> --> adding suresh to secondary group
+
+passwd <user-name>
+
+/etc/ssh/sshd_config --> SSH configuration
+
+PasswordAuthentication no
+
+vim /etc/ssh/sshd_config
+sshd -t -> checks the syntax of ssh
+
+systemctl restart sshd
+
+gpasswd -d <user-name> <group-name>
+
+id suresh
+suresh suresh suresh
+
+files and permissions
+=====================
+Read    -> 4
+Write   -> 2
+Execute -> 1
+
+-	rw-			r--		r--
+	owner/user	group	others
+	u			   g		o
+	
+chmod g+w 
+chmod 744
+
+
+
+
+

@@ -1,0 +1,16 @@
+name: Conditions # workflow name
+on: [push]
+jobs: 
+  conditions-demo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Hello World
+        run: echo "Hello, world!"
+
+      - name: trigger PROD deploy
+        if: github.ref == 'refs/heads/main'
+        run: echo "deploy to PROD"
+
+      - name: trigger DEV deploy
+        if: github.ref == 'refs/heads/feature-*'
+        run: echo "deploy to DEV"

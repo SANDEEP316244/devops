@@ -1,0 +1,107 @@
+Disadvantages of shell
+========================
+1. No error handling
+2. OS specific, homogeneous
+3. Little complex to understand
+4. Not idempotent
+5. Complex to handle large number of servers
+
+1. copy the script and dependent files, mongo.repo and mongodb.sh
+2. then execute from main server
+
+Configuration management
+========================
+Install few system packages
+Installing Programming runtime
+Creating folder
+Creating system user
+Downloading the code
+Unzipping the code
+Installing Dependencies
+Creating systemctl service files
+Staring the application
+
+Baseling/Configuring server is nothing but making it ready to host the application
+
+Deployment -> Downtime
+===========
+1. Stop the application
+2. remove the old code
+3. Download new code
+4. Install dependencies
+5. restart the application
+
+Push vs Pull
+============
+Push -> Ansible is popular, it recently implemented pull too
+Pull -> Chef
+
+BANG -> HYD
+==============
+DTDC
+
+Polling/Pulling
+===============
+I go to DTDC everyday and check whether I received courier or not
+
+Event Driven/Push
+===============
+You carry on, when you get courier it will be delivered
+
+SYS-1 -> Broadcast
+SYS-1 -> SYS-2
+
+Linux command == Ansible Module/Collection
+
+dnf install nginx -y
+dnf is a command
+install and nginx -> arguments
+
+keep all the commands in a file, we call it as shell and run the script
+
+Playbook -> collections of plays, a play is a list of tasks to be executed on the target server
+
+{
+	"name": "siva",
+	"email": "siva@gmail.com" 
+	"password": "siva123"
+}
+
+DTO -> Data transfer objects
+=======
+XML JSON YAML
+
+100 year back go to bank
+====================
+
+name
+acc no
+amount
+branch
+date
+sign
+
+1. Easy to do mistakes
+2. Time consuming
+
+Forms == Templates
+=====
+Name
+Acc No
+Date
+Amount
+Sign
+
+XML -> Extensive Markup Language
+================================
+<Name>Sivakumar</Name>
+
+HTML -> Hyper text markup language
+<h1>This is main heading</h1>
+<h2>This is side heading</h2>
+
+YAML -> Yet another markup language
+
+indentation -> spacing
+
+ansible all -i 172.31.26.71, -e ansible_user=ec2-user -e ansible_password=DevOps321 -m ping

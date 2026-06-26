@@ -1,0 +1,119 @@
+ps -ef -> list all the process running
+top -> it will display live process with cpu and ram
+
+kill PID -> request to terminate
+kill -9 PID -> order to terminate
+
+netstat -lntp -> shows the ports openend and PID
+
+Database -> Application -> Web -> Load Balancer -> User
+
+CRUD
+======
+1. Create operation
+2. Read operation
+3. Update operation
+4. Delete operation
+
+amazon.in
+
+devops-practice -> AMI(Amazon Machine image)
+
+What is image == image is everything around us
+Image = OS + Some required softwares
+
+Linux is OS or Kernel?
+=======================
+Linus Torwalds -> Linux and Git
+
+Mac -> Hardware + MacOS
+Dell -> Hardware + OS(Optional) -> we have freedom to install any OS
+
+dominating OS for servers was Unix
+Unix -> Hardware+UnixOS
+
+He completely developed a Kernel from the scratch using C language. 
+
+Kernel = a component that connects with Hardware
+OS = Kernel + some utilities or applications for user
+
+Centos, Fedora, Ubuntu, Android, Oracle Suse, Redhat
+
+Redhat Family
+==============
+Opensource vs Enterprise
+
+Opensource -> free and community driven. we need to wait for fix
+Enterprise -> We pay money for support. if there are defects immidiately we get help
+
+Enterprise = Opensource + Support
+
+Redhat = Kernel + Application Utilities + Support
+
+Amazon Linux == Redhat == Centos == Fedora == Almalinux
+
+devops-practice = RHEL based
+
+username=ec2-user 
+Password=DevOps321
+
+34.228.199.227
+
+ssh ec2-user@34.228.199.227
+
+A -> B -> C -> D -> E
+
+A -> Z -> Y -> C -> D -> E
+
+Database
+==============
+Database Server -> it is physical server
+Server == Box == Node
+
+database server software should be installed
+
+RDBMS -> relational database management system
+Excel -> Rows and Columns = Sheets
+RDBMS = Rows and Columns = Tables
+
+There is a relation between tables
+
+MySQL, MSSQL Admin, Oracle Admin,
+3306 -> MySQL port number
+
+default admin username == root
+password needs to setup
+
+mysql_secure_installation --set-root-pass ExpenseApp@1
+
+IP, port, protocol, username and password/key
+
+https
+IP/facebook.com
+username
+password
+443
+
+mysql  -u root -p<password>
+
+-p<password> -> nospace between p and password
+
+mysql -u root -pExpenseApp@1
+
+Database Linux Server -> Database Server Installation -> Schema/databases -> tables -> Data
+
+Application Tier
+================
+dnf module disable nodejs -y -> Disabling default nodejs version
+dnf module enable nodejs:20 -y -> enable especially node js 20
+
+dnf install nodejs -y
+
+dnf is the next version of yum
+
+useradd expense
+system users or service accounts -> non human users
+
+mkdir /app
+
+

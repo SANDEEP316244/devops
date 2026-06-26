@@ -1,0 +1,12 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "description": "frontend APP",
+  "scripts": {
+    "test": "echo test"
+  },
+  "author": "SteveW",
+  "license": "Apache-2.0",
+  "dependencies": {
+  }
+}

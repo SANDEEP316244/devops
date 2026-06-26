@@ -1,0 +1,38 @@
+Variables
+Data types
+Conditions
+Exit staus
+Functions
+Loops
+Redirections and logs
+Error handling
+
+SED editor
+===========
+strealine editor, non-interactive editor
+
+create the line
+update the line
+delete the line
+
+sed '1i Hello SED' <file-name> -> insert before first line
+sed '1a Hello' -> insert after first line
+sed '2d' -> delete 2nd line
+sed '/Hello/d' -> delete lines where there is Hello
+sed 's/root/ROOT/' -> substitute the first occurence in every line
+sed 's/root/ROOT/g' -> substitute all occurences in every line
+sed '3c Hello change' -> replace 3rd line
+sed '/error/ c NO-ERROR' -> change the line based on pattern
+
+idempotent
+============
+Scripts should give same results even you run them infinte times -> this is called idempotency
+
+GET -> idempotent
+POST -> chance of duplicates or error... we need work for idempotency
+PUT/UPDATE -> not danger, check if already same then don't allow to change
+DELETE -> not danger, but check if already deleted, then tell it is deleted already
+
+check roboshop user already exist or not, if exist skip otherwise create
+
+mongosh mongodb.daws86s.fun --quiet --eval "db.getMongo().getDBNames().indexOf('catalogue')"

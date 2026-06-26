@@ -1,0 +1,157 @@
+Buy a server in hostinger.in
+transfer the ownership to Route53
+Update NS records in hostinger.in
+
+Browser -> Cache -> OS -> Cache -> ISP DNS resolver -> Root Servers -> TLD -> Who is managing the servers NS
+
+High Availability -> Same region multi AZ
+Disaster recovery -> Multi Region
+
+us-east-1 -> AWS control all global services are here
+
+Multi Cloud -> AWS, Azure, GCP
+
+Module -> must provide inputs and outputs documentation. Module must provide outputs
+Infra code -> provider, have to pass inputs to module. Must receive outputs
+
+module "module_name" {
+
+	source = ""
+	module_vars = "values"
+}
+
+VPC(Virtual private cloud) -> where we can our resources in isolated space. we have the full control over this. we are completely responsible to this
+=========================
+pincode
+street name/number
+door number
+
+PINCODE-STREET_NUMBER-DOOR/APT_NUMBER-FLOOR_NUMBER-FLAT_NUMBER
+
+534673-33-25-03-302
+
+534674-33
+
+one room
+power connection
+network connection
+AC
+physical security
+
+Subnets -> we create partitions in network for maintainance and security. 
+
+VPC -> Village
+Subnet -> Streets
+Route tables -> Roads
+Internet Gateway -> Modem/Arch
+
+IP Address
+
+192.168.0.1 -> 32 bits
+
+0 1 2 3 . . . . 9 -> binary
+0 1 -> Binary
+
+2   1   0
+=	=	=
+1	2	4 = 4*10^0 + 2*10^1 + 1*10^2 = 4+20+100
+
+4 Octates -> 8 bits each = 32 bits
+
+7	6	5	4	3	2	1	0
+=	=	=	=	=	=	=	=
+1	0	0	1	0	1	0	1 = 1*2^0 + 0*2^1 + 1*2^2 + 0*2^3 + 1*2^4 + 0*2^5 + 0*2^6 + 1*2^7
+							  = 1 + 0 + 4 + 0 + 16 + 0 + 0 + 128
+							  = 149
+							  
+00000000 -> 0
+11111111 -> 255
+
+255.255.255.255
+
+_ -> 0 1 -> 2^1 = 2
+
+_	_
+0	0
+0	1
+1	0
+1	1
+-> 2^2 = 4
+
+n bits -> how many numbers -> 2^n
+32 bits ipv4 -> 2^32
+
+NAT -> public IP from ISP
+
+IP = Network+Host(server)
+
+10.0.0.0/16 -> first 16 bits are reserved for network. next 16 bits are reserved for hostinger
+
+10.0.0.0
+.
+.
+.	= 2^16 = 65,536
+.	
+.
+10.0.255.255
+
+CIDR = Classless Inter Domain Routing
+
+10.0.0.0/16 == pincode
+
+2^8 -> 256 subnets
+
+10.0.0.0/24 -> 24 bits are reserved. 2^8 = 256 = 0-255
+10.0.0.0
+.
+.
+.
+10.0.0.255
+
+10.0.0.0/24
+10.0.1.0/24
+10.0.2.0/24
+10.0.3.0/24
+.
+.
+.
+.
+10.0.255.0/24
+
+
+
+10.0.1.0/24 -> public-1a
+10.0.2.0/24 -> public-1b
+
+10.0.11.0/24 -> private-1a
+10.0.12.0/24 -> private-1b
+
+0.0.0.0/0
+
+private server -> no internet access
+
+dnf install mysql-server -> traffic is originating inside server -> egress
+backend connecting DB -> ingress
+
+What is NAT gateway?
+
+If we want to enable egress internet access to the private servers we can enable NAT gateway. for installation, patches, etc.
+
+Elastic IP == Static IP = 1500INR
+
+VPC -> CIDR
+IGW
+Subnets -> CIDR
+Route tables and Routes
+Route table associations with subnets
+EIP
+NAT gateway
+
+Public and Private subnets
+NAT in public
+bastion host in seperate subnet
+VPN in different subnet
+
+Lap -> VPN -> VPN IP is enabled in private subnet. NAT for internet
+Bastion can access private EC2 -> NACL attached to private subnet should allow bastion subnet CIDR or IP
+NACL

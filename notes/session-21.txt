@@ -1,0 +1,85 @@
+1. check source_dir and dest_dir is given or not
+2. check whether they are exist or not
+3. then find the *.log file
+4. zip them and move to dest_dir
+5. if zipping is success then delete from source_dir
+
+low traffic days, low traffic hours
+
+12:00AM-06:00AM
+
+crontab
+========
+A scheduler in Linux servers, we can schedule the scripts using crontab..
+
+* * * * *
+
+50 servers...
+clone scripts
+schedule in crontab
+
+you took some sample server, you developed script. tested it working fine. then you installed this as crontab in all the servers
+
+script failed in PROD, because zip command was not installed. so I made it avaialbe in the script again..
+
+0 2 * * * sudo backup source_dir dest_dir
+
+monitoring
+==========
+HD, RAM, CPU
+
+99.7 id -> ideal --> free
+100 - 99.7
+
+2 step verification should be switched on..
+
+pcrxrsuhsorrcvnh
+
+defaults
+auth           on
+tls            on
+tls_trust_file /etc/ssl/certs/ca-bundle.crt
+logfile        /var/log/msmtp.log
+
+account        gmail
+host           smtp.gmail.com
+port           587
+from           joindevops@gmail.com
+user           joindevops@gmail.com
+password       pcrxrsuhsorrcvnh
+
+account default : gmail
+
+{
+echo "To: info@joindevops.com"
+echo "Subject: Mail Alert from Joindevops"
+echo "Content-Type: text/html"
+echo ""
+echo "This is test email"
+} | msmtp "info@joindevops.com"
+
+Text to HTML converter
+
+https://www.onlinewebtoolkit.com/text-to-html
+
+
+Hi TO_TEAM,
+
+There is an ALERT_TYPE in the system IP_ADDRESS. Please find the details below
+
+MESSAGE
+
+Regards,
+Monitoring Team
+
+1 command prepare
+
+df -hT
+
+loop the lines
+
+use awk command I will get partition and usage
+
+prepare the body, calling email script
+
+schedule this in crontab

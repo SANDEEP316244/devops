@@ -1,0 +1,5 @@
+apiVersion: v2
+name: catalogue # chart name
+version:  1.0.0 # chart version
+description: catalogue installation
+appVersion: v1 # this is application version

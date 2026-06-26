@@ -1,0 +1,99 @@
+49.204.160.153 
+
+How internet works?
+What is public IP and private IP?
+
+Wireless vs Wire
+================
+Wire is more speed
+
+Chennai -> Guntur -> Vijayawada-> -> Vizag -> Kolkata
+
+low speed and more time
+
+non human user which will not have any password is called system/service user..
+
+curl -o /tmp/backend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip
+
+dependencies or libraries
+==========================
+nodejs -> package.json == build file --> here dependencies will be mentioned by developers, our application will work if we have these dependencies and project name, description, etc.
+java -> pom.xml
+python -> requirements.txt
+.NET -> .sln
+go -> build.go
+
+npm install -> node package manager -> it expects package.json in the current folder.
+
+dnf install nginx
+systemctl start nginx
+
+if custom application, then how to start/stop/restart
+
+we can create systemctl services for custom applications
+
+/etc/systemd/system/<preferred-name>.service
+
+How to start the application, DB configuration details also will be provided
+
+
+[Unit]
+Description = Backend Service
+
+[Service]
+User=expense
+Environment=DB_HOST="<MYSQL-SERVER-IPADDRESS>"
+ExecStart=/bin/node /app/index.js
+SyslogIdentifier=backend
+
+[Install]
+WantedBy=multi-user.target
+
+/etc/systemd/system/<preferred-name>.service
+
+/etc/systemd/system/backend.service
+
+systemctl start backend
+systemctl enable backend
+systemctl status backend
+
+
+systemctl daemon-reload
+
+how much money?
+why you spent?
+
+mysql -h 172.31.30.95 -uroot -pExpenseApp@1 < /app/schema/backend.sql
+
+backend applications mostly uses port no 8080
+
+install programming language
+created one directory
+downloaded code
+installed dependencies
+created systemctl service to start/stop/restart
+then make sure DB connections, schemas, tables exsits
+
+backend -> Database
+
+telnet <IP> <port>
+
+login to backend server
+
+telnet 172.31.30.95 3306
+
+nginx -> famous webserver and reverse proxy
+===========================================
+
+/usr/share/nginx/html -> default directory where you keep frontend code
+/etc/nginx -> nginx configuration
+
+systemctl start nginx
+
+vim /etc/nginx/default.d/expense.conf
+
+/etc/nginx
+
+
+
+http://54.88.122.243/api/transaction

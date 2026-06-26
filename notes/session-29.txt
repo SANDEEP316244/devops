@@ -1,0 +1,71 @@
+Configuration management
+=====================
+Collections/Modules. It will have parameters
+
+Ansible can create infra, but it can't manage/update infra because of no state management feature available in ansible, originally created created for configuration management not good for infra management..
+
+Use terraform for infra creation, once servers are created by terraform handover them to ansible, ansible completes configuration in the server
+
+Terraform -> IaaC Infrastructure as a code
+
+CM -> Configuration as a code
+CRUD
+Creation of configuration
+Reading the configuration
+Update the configuration
+Delete the configuration
+
+Infra as a code
+===============
+Version control
+Automatic CRUD
+Consistent infra -> DEV, QA, UAT, PRE-PROD, PERF, PROD
+Inventory -> What are the services we are using in cloud
+Cost optimisation
+Time saving and no human errors
+Dependency -> SG, EC2 and then R53
+Modular reusable infra
+
+Terraform, Pulumi, Cloudformation, etc..
+
+1. Terraform
+2. AWS CLI V2
+
+https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
+
+
+ls -> /usr/bin or /bin
+
+terraform -> We can give the PATH in windows
+
+HCL -> Hashicorp configuration language
+
+name, image, sg, storage disk, key(no-key)
+
+{
+	key = "value"
+}
+
+resource "aws_instance" "name-of-resource" {
+	
+	ami = ""
+	name = ""
+	storage = ""
+	key = ""
+	instance_type = ""
+
+}
+
+resource "type_of_resource" "name-of-resource" {
+	
+	key = value
+	
+}
+
+terraform init -> downloads the provider, intialise terraform
+terraform plan -> It will give us a plan that what it is going to do
+terraform apply -> creates the infra as given in the plan
+terraform apply -auto-approve
+terraform destroy -auto-approve
+
+VAR_NAME="VALUE"

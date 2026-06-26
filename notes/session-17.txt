@@ -1,0 +1,94 @@
+Variables
+Data types
+Conditions
+Functions
+Exit status
+Redirections
+Logs
+Colors
+Loops
+Colors are for human, logs are for troubleshooting
+
+3 xerox -> no auto xerox
+300 xerox -> auto xerox
+
+loops/iteration
+
+1. no perfomance improvement
+2. efforts
+
+3. less code duplication
+4. easy to maintain
+5. dynamic workloads
+
+for(int i=0;i<1000;i++){
+	print i;
+}
+0-99
+
+print 0
+print 1
+print 2
+print 3
+
+Error Handling
+==============
+1. Can we move on with the error
+
+expected error should be handled
+unexpected error shouldn't be handled
+
+AMI, SG, Key, instance type, storage
+
+authenticate before
+aws create instance key="" sg-id="" instance-type="t3.micro" --storage="20GB"
+
+aws configure -> authenticate with AWS
+aws s3 ls -> no o/p is okay, but error means credentials are wrong
+
+1. create ec2 instance
+2. update private ip in r53 record
+3. if frontend update public ip in frontend.daws86s.fun
+
+aws ec2 run-instances --image-id ami-09c813fb71547fc4f --instance-type t3.micro --security-group-ids sg-07c8acf3fa6b923fa --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=Test}]' --query 'Instances[0].InstanceId' --output tex
+
+aws ec2 describe-instances --instance-ids i-0682bd1dbd92ce16c --query 'Reservations[0].Instances[0].PublicIpAddress' --output text
+
+aws ec2 run-instances --image-id ami-09c813fb71547fc4f --instance-type t3.micro --security-group-ids sg-07c8acf3fa6b923fa --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=Test}]' --query 'Reservations[0].Instances[0].PrivateIpAddress' --output text
+ami-09c813fb71547fc4f
+sg-07c8acf3fa6b923fa
+
+1. get the instance-id
+2. query the instance-id to get public ip
+
+11 instances
+I want to create instances dynamically
+
+1. created instance and took instance-id
+2. get private ip or public ip
+
+if instance == "frontend" take public ip else take private ip
+
+Existing Folder to Repo
+=======================
+git init -> intialise the folder as git repo
+
+
+aws route53 change-resource-record-sets \
+  --hosted-zone-id Z0948150OFPSYTNVYZOY \
+  --change-batch '
+  {
+    "Comment": "Updating record set"
+    ,"Changes": [{
+      "Action"              : "UPSERT"
+      ,"ResourceRecordSet"  : {
+        "Name"              : "'$RECORD_NAME'"
+        ,"Type"             : "A"
+        ,"TTL"              : 1
+        ,"ResourceRecords"  : [{
+            "Value"         : "'$IP'"
+        }]
+      }
+    }]
+  }
+  '

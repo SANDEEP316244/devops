@@ -1,0 +1,109 @@
+name: feature-nodejs-pipeline
+on:
+  workflow_call: # will be called by someone, should get inputs from caller
+    inputs:
+      project:
+        required: true
+        type: string
+      component:
+        required: true
+        type: string
+      environment:
+        required: true
+        type: string
+env:
+  ACC_ID: 160885265516
+jobs:
+  feature-nodejs-pipeline:
+    runs-on: self-hosted
+    steps:
+    - name: checkout code
+      uses: actions/checkout@v6
+    - name: list files
+      run: ls -l
+
+    - name: get the version
+      run: |
+        # if you store it in GITHUB_ENV, you can use in other steps in the same job
+        echo "APP_VERSION=${GITHUB_SHA::9}" >> "$GITHUB_ENV"
+
+    - name: print inputs
+      run: |
+        echo ${{ inputs.project }}
+        echo "version: ${APP_VERSION}"
+
+    - name: install dependencies
+      run: npm install
+    - name: run unit tests
+      id: unit_tests
+      run: echo "run unit tests"
+
+    - name: Update unit tests status
+      if: always()
+      uses: daws-86s/workflows/.github/actions/update-commit-status@main
+      with:
+        sha: ${{ github.sha }}
+        state: ${{ steps.unit_tests.outcome }}     # success / failure / cancelled
+        context: UNIT_TESTS
+        description: ${{ steps.unit_tests.outcome }}
+
+    - name: docker build
+      id: docker_build
+      run: |
+        docker build -t ${ACC_ID}.dkr.ecr.us-east-1.amazonaws.com/${{ inputs.project }}/${{ inputs.component }}:${APP_VERSION} .
+        docker images
+    - name: Update docker build status
+      if: always()
+      uses: daws-86s/workflows/.github/actions/update-commit-status@main
+      with:
+        sha: ${{ github.sha }}
+        state: ${{ steps.docker_build.outcome }}     # success / failure / cancelled
+        context: DOCKER_BUILD
+        description: ${{ steps.docker_build.outcome }}
+
+    - name: Security Check (Dependabot + Trivy)
+      id: security_check
+      # env:
+      #   GH_TOKEN: ${{ secrets.GH_TOKEN }}
+      shell: bash
+      run: |
+
+        echo "🔍 Running Trivy scan..."
+        trivy image \
+          --scanners vuln \
+          --severity HIGH,CRITICAL,MEDIUM \
+          --pkg-types os \
+          --exit-code 1 \
+          --format table \
+          ${ACC_ID}.dkr.ecr.us-east-1.amazonaws.com/${{ inputs.project }}/${{ inputs.component }}:${APP_VERSION}
+
+        TRIVY_RESULT=$?
+
+        if [ "$TRIVY_RESULT" -ne 0 ]; then
+          echo "❌ Trivy found vulnerabilities (HIGH/CRITICAL/MEDIUM)"
+          exit 1
+        fi
+
+        echo "✅ Trivy scan passed without blocking issues."
+
+    - name: Update scan status
+      if: always()
+      uses: daws-86s/workflows/.github/actions/update-commit-status@main
+      with:
+        sha: ${{ github.sha }}
+        state: ${{ steps.security_check.outcome }}     # success / failure / cancelled
+        context: SECURITY_CHECK
+        description: ${{ steps.security_check.outcome }}
+
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v5.1.1
+      with:
+        aws-region: us-east-1
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    - name: push image
+      run: |
+        aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin ${ACC_ID}.dkr.ecr.us-east-1.amazonaws.com
+        docker push ${ACC_ID}.dkr.ecr.us-east-1.amazonaws.com/${{ inputs.project }}/${{ inputs.component }}:${APP_VERSION}
+
+    

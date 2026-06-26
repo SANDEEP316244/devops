@@ -1,0 +1,9 @@
+DRY -> Don't repeat yourself
+
+How can you call one script from another script?
+
+1. call by sh <script-name> runs in different process, can't access script-1 environment. script-1 is not effected by script-2 failure
+2. source <script-name> runs in the same proces sof script-1 can access script-1 environment. script-1 is effected by script-2 failure
+
+
+

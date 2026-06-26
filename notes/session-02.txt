@@ -1,0 +1,151 @@
+Rules
+=======
+1. Private bank debit cards, Rupay will not work. Canara bank, Union Bank is working 
+2. International transactions should be enabled. SBI also works
+3. Min balance 500.
+4. Use same address as in bank card.
+5. PAN card mandatory.
+
+Don't create 2 accounts with same card. Use diff email and diff card
+
+6 months, after 6 months create another account
+=========
+100$ credit
+once we start use we get another 100$
+17,000 INR
+
+below 1000 dont ask for refund
+
+more than 1000 we can ask for refund, 3 chances
+
+
+What is computer? -> IP enabled device
+Communication between computers -> IT
+Server, Mobile, Laptop, TV, AC, etc are computers
+
+Based on purpose we call with diff names
+
+Server -> hosting the applications
+Computer -> Internet browsing, songs, videos, banking, etc
+Mobile -> Calling, Social media, etc.
+
+RAM, CPU(processor), Storage, OS
+
+Linux
+======
+Why Linux is better than windows?
+OS --> Bridge between Hardware and Software
+
+Server -> Speed
+
+Windows
+=========
+heavy graphics
+more Cost
+Slow
+heavy resources consumption
+performance -> frequent restarts
+Security -> Anti virus installation is mandatory
+upgrade to other version is little tough
+
+Linux Server edition
+===================
+Opensource
+Free
+no graphics, only text
+super fast
+less resources -> 9MB of OS can be installed
+run for years without restart
+by default security is present in OS
+upgrade is easy
+Learning curve
+
+Create Linux Server
+Connect to it
+start issuing basic commands
+
+Region and Availability Zone
+============================
+North virginia is the first AWS region. Cost is less compared to any other regions
+
+us-east-1
+
+AZ --> region has multiple AZ, atleast 2 AZ
+
+EC2 -> Elastic compute cloud
+
+AMI(Amazon machine image) -> OS
+
+t2.micro or t3.micro --> free tier
+
+t3.micro -> 2 CPU, 1GB RAM
+
+Firewall and authentication
+===========================
+
+Authentication
+===================
+what you know? -> Username and password
+what you have? -> Username, RSA/OTP/Google/Microsoft auth
+what you are? -> finger prints, retina, palm, etc.
+
+keys
+====
+SSH keys
+public key and private key algorithm
+
+SSH -> Secure Shell
+
+Client Server architecture
+==========================
+Whoever provide service they are servers
+
+Lawyer -> Servers
+Public -> Clients
+
+facebook.com server, client is browser
+
+Linux Server -> clients -> putty, mobaxterm, cmd, mac terminal, git bash, etc..
+
+git bash is one of the SSH client, git client and a mini linux in windows, etc.
+
+once we open git bash, it lands into user directory
+
+C:\Users\<your-lap-username>
+
+C:\Users\siva
+
+Windows -> \(backward)
+Linux -> /(forward)
+
+Git Bash -> You can run basic linux commands in windows, but not completely
+
+pwd -> present working directory
+
+C:\devops\daws-86s
+
+cd /c/devops/daws-86s
+
+change directory --> cd
+ 
+ssh-keygen -f daws-86s
+
+firewall == Security Groups
+=========
+incoming and outgoing
+
+inbound and outbound
+
+SSH -> Secure Shell
+Port -> 22
+
+98.80.251.7
+
+ec2-user
+
+ssh -i <private-key> ec2-user@98.80.251.7
+
+ec2 -user
+ec2- user
+
+ls -l -> list the file

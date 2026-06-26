@@ -1,0 +1,153 @@
+Process Management
+==================
+Team Manager
+Team Lead
+Senior Engineer
+Junior Engineer
+Trainees
+
+ls -l -> It will create one process and assign ID, i,e PID and display the result
+
+TL -> Senior Engineer
+TL is his parent for that task, Senior Engineer is Child
+
+TL creates one process and his process ID PPID (Parent process Instance ID)
+TL assigns this to Senior Engineer. PID(Process Instance ID)
+
+PPID 
+
+ps -> lists the process started by current user
+
+ps -ef
+UID          PID    PPID  C STIME TTY          TIME CMD
+root           1       0  0 01:53 ?        00:00:00 /usr/lib/systemd/systemd --switched-root --system --deseria
+root           2       0  0 01:53 ?        00:00:00 [kthreadd]
+root           3       2  0 01:53 ?        00:00:00 [rcu_gp]
+root           4       2  0 01:53 ?        00:00:00 [rcu_par_gp]
+
+1. foreground -> blocks the current screen, will not allow to do anything
+2. background -> 
+
+sleep 10 &
+
+ps -ef | grep nginx
+top -> list all process with their usage of resources
+
+1. High traffic
+10 users, 10% CPU, 25% RAM
+100 users, 20% CPU, 40% RAM
+
+2. Problems in application
+10 users, 20% CPU, 40% RAM
+if a task runs it takes CPU and RAM, if it is completed then it should release CPU and RAM.
+Sometime application will not release these resources, then we need to fix the application
+
+restart
+
+get all the logs, app logs, server logs, etc..
+
+restart the server or application
+
+kill PID -> Request
+kill -9 PID --> force kill(demand)
+
+Network Management
+=====================
+AWS is responsible to provide power, network, etc.
+
+systemctl status nginx
+ps -ef | grep nginx
+
+http://34.228.167.238:80
+
+netstat -ltnp
+
+Linux Hierarchy
+SoftLink, Hardlink, inode
+forward proxy vs reverse proxy
+
+3 tier architecture
+========================
+Desktop vs Web based
+
+Desktop
+==========
+resources usage is more
+Installation, repair and upgrade
+ocassionally hangs
+storage in local, if crashes no recovery
+can't access everywhere
+no data security
+
+Web based
+==========
+
+Road Side hotel -> 1 tier
+===============
+Cooking, money collection, order management
+
+5-10 members
+if 20 members, he can't handle
+
+Hotel -> 2 tier
+===============
+owner issues token
+cook is cooking dosa
+20 members
+	cooking
+	order management
+50 members
+
+Restaurant Model -> 3 tier
+================
+Captain -> welcomes the guest and shows them a table
+Waiter -> taking order, order management
+Chef -> Cooking
+Waiter --> Garnish, and delivers the order
+
+50 members
+
+Dosa Batter -> Cooks into Dosa(Chef) -> Waiter delivers the order
+Raw items -> Eatable format(Chef) -> Waiter
+
+Raw format(SQL or NoSQL) -> Application Servers(Java, Python, .NET, NodeJS, Golang) -> Web Servers -> Load Balncer(Captain)
+
+everything in single server is called as 1 tier application
+Database -> Application and Webserver (2 tier)
+Database -> Application Server -> Webserver and Load Balncer (3 tier)
+
+decoupling or loose coupling
+
+
+Web/Frontend Tier
+=========
+Load Balancing
+Web Server -> nginx -> place web application here
+HTML, CSS and Javascript
+
+Application/Backend/Middleware Server/Tier
+==============
+Java, .NET, Python, C++, Goland, NodeJS
+
+CRUD
+=====
+
+Database Tier
+===============
+Storing the data
+
+MySQL
+Oracle
+MSSQL
+Postgress
+
+MongoDB
+Cassandra
+
+Redis
+
+ActiveMQ
+Websphere MQ
+
+
+

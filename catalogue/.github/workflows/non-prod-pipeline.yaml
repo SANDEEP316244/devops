@@ -1,0 +1,32 @@
+name: NON-PROD Pipeline
+on: 
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Please enter SHA code"
+        required: true
+        type: string
+      environment:
+        description: "Please select environment"
+        type: choice
+        options:
+          - qa
+          - uat
+          - sit
+        required: true
+        default: uat
+concurrency:
+  group: roboshop-catalogue-nonprod
+  cancel-in-progress: false
+permissions:
+  contents: read
+  statuses: write
+  security-events: read
+jobs: 
+  non-prod-pipeline:
+    if: github.ref == 'refs/heads/main'
+    uses: daws-86s/workflows/.github/workflows/non-prod-pipeline.yaml@main
+    with:
+      version: ${{ inputs.version }}
+      environment: ${{ inputs.environment }}
+    secrets: inherit

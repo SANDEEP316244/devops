@@ -1,0 +1,45 @@
+Remote state
+==============
+state is used by terraform. usually we should not touch state file. 
+
+We should secure state file from accidental changes.
+
+1 person completed infra, state is in his local..
+2nd person want to do changes, he initialise terraform, he will plan and he will apply
+1. either duplicate resources
+2. error while creating resources saying that already exists
+
+we must keep state file in remote location while working in colloboration environment for security and preventing duplicate resources and errors when multiple members are working together
+
+state file should be locked when terraform is doing something, so that other person can't apply the changes.
+
+locals
+=======
+locals are like variables but it has many extra capabilities
+1. variables can be overriden, locals can't be overriden
+2. you can use variables inside locals. but we can't use one variable in another variable
+3. you can store expressions or functions inside locals block and reuse them whenever required
+
+mysql catalogue cart user
+
+roboshop-catalogue
+roboshop-dev-catalogue
+roboshop-qa-catalogue
+
+dynamic block
+==============
+loops inside terraform
+	count based
+	for_each
+	dynamic
+	
+22 8080 80 3306 27017 6379 5672
+
+Provisoners
+=============
+terraform is creating instance, if we want to configure terraform is allowing to run few scripts
+
+1. local-exec
+2. remote-exec
+
+ansible-playbook -i inventory playbook.yaml
